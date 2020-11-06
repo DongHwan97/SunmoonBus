@@ -33,10 +33,5 @@
             android:layout_height="wrap_content"
             android:text="회원가입" />
 
-        <Button
-            android:id="@+id/startPasswordResetButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="비밀번호 재설정" />
     </LinearLayout>
 </LinearLayout>
