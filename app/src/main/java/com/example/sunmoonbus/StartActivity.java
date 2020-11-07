@@ -15,6 +15,9 @@ public class StartActivity extends AppCompatActivity {
         findViewById(R.id.startLoginBtn).setOnClickListener(onClickListener);
         findViewById(R.id.startSignUpBtn).setOnClickListener(onClickListener);
         findViewById(R.id.startFindPWbtn).setOnClickListener(onClickListener);
+
+        new FirebaseDB();
+        gotoActivity(TaggingActivity.class);
     }
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
