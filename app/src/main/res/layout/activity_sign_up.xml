@@ -21,13 +21,37 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
+        <RadioGroup
+            android:id="@+id/rGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rdoBtnPassenger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:checked="true"
+                android:text="승객" />
+
+            <RadioButton
+                android:id="@+id/rdoBtnDriver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="기사" />
+
+        </RadioGroup>
+
         <EditText
-            android:id="@+id/emailEditText"
+            android:id="@+id/idEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="학번"
-            android:inputType="textEmailAddress" />
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/pwEditText"

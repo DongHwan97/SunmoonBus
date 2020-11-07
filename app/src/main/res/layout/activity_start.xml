@@ -22,16 +22,25 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/startLoginButton"
+            android:id="@+id/startLoginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="로그인" />
 
         <Button
-            android:id="@+id/startSignUpButton"
+            android:id="@+id/startSignUpBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="회원가입" />
+
+        <Button
+            android:id="@+id/startFindPWbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="비밀번호 찾기" />
 
     </LinearLayout>
 </LinearLayout>
