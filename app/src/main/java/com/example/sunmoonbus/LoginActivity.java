@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     RadioGroup rGroup;
     RadioButton rdoPassenger, rdoDriver;
 
+    FirebaseDB2 userDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         rdoDriver = (RadioButton)findViewById(R.id.rdoBtnDriver);
         findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
+        userDB = new FirebaseDB2("User");
     }
 
     public void onBackPressed(){
@@ -69,10 +72,10 @@ public class LoginActivity extends AppCompatActivity {
         if(id.length()>=10&&pw.length()>=6){
             switch(rGroup.getCheckedRadioButtonId()){
                 case R.id.rdoBtnPassenger://승객
-                    if(){
+                    if(!userDB.isIdExist(id)){
                         startToast("회원가입되지 않은 사용자 입니다.");
                     }else{
-                        if(){
+                        if(userDB.isPwMatch(id, pw)){
                             startToast("로그인에 성공했습니다.");
                             gotoActivity(MainActivity.class);
                         }else{
@@ -81,12 +84,12 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.rdoBtnDriver://기사 DB에 데이터저장
-                    if(){
+                    /*if(){
                         startToast("로그인에 성공했습니다.");
                         gotoActivity(MainActivity.class);
                     }else{
                         startToast("비밀번호가 일치하지 않습니다.");
-                    }
+                    }*/
                 }
         }else{
             startToast("학번은 10자리이상, 비밀번호는 6자리이상입니다.");

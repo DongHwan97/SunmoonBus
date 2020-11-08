@@ -8,6 +8,11 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="30" />
 
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
@@ -33,6 +38,13 @@
         <activity android:name="com.example.sunmoonbus.StartActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.sunmoonbus.TaggingActivity" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

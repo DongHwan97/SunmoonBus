@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "outputFile": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dhpak\\.gradle\\caches\\transforms-2\\files-2.1\\85617a0bd0c144064dce7eaf3664b2d0\\appcompat-1.2.0\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\jason\\.gradle\\caches\\transforms-2\\files-2.1\\85617a0bd0c144064dce7eaf3664b2d0\\appcompat-1.2.0\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

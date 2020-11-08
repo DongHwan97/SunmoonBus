@@ -929,12 +929,14 @@ id beginning
 id blocking
 id bottom
 id bounce
+id busId
 id buttonPanel
 id cache_measures
 id center
 id center_vertical
 id chain
 id chains
+id checkBtn
 id checkbox
 id checked
 id chronometer
@@ -951,6 +953,7 @@ id decor_content_parent
 id default_activity_button
 id deltaRelative
 id dependency_ordering
+id desti
 id dialog_button
 id dimensions
 id direct
@@ -1086,6 +1089,7 @@ id stop
 id submenuarrow
 id submit_area
 id tabMode
+id tagId
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -1113,6 +1117,7 @@ id unchecked
 id uniform
 id up
 id useLogo
+id userCnt
 id visible
 id wide
 id withText
@@ -1164,6 +1169,7 @@ layout activity_login
 layout activity_main
 layout activity_sign_up
 layout activity_start
+layout activity_tag
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone

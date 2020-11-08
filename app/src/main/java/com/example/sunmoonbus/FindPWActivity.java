@@ -12,15 +12,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.project1.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class FindPWActivity extends AppCompatActivity {
     EditText idEditText;
     RadioGroup rGroup;
@@ -58,7 +49,7 @@ public class FindPWActivity extends AppCompatActivity {
     };
 
     private void send() {
-        String id = idEditText.getText().toString();
+        /*String id = idEditText.getText().toString();
 
 
         if(id.length()>=10){
@@ -72,7 +63,7 @@ public class FindPWActivity extends AppCompatActivity {
                     });
         }else{
             startToast("아이디는 10자 이상입니다.");
-        }
+        }*/
     }
 
     private void startToast(String msg){
