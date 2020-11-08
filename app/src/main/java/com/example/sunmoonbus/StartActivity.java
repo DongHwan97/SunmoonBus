@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
     @Override
@@ -16,6 +17,8 @@ public class StartActivity extends AppCompatActivity {
         findViewById(R.id.startSignUpBtn).setOnClickListener(onClickListener);
         findViewById(R.id.startFindPWbtn).setOnClickListener(onClickListener);
     }
+
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -35,5 +38,9 @@ public class StartActivity extends AppCompatActivity {
     private void gotoActivity(Class c){
         Intent intent = new Intent(this,c);
         startActivity(intent);
+    }
+
+    private void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 }
