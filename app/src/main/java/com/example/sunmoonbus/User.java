@@ -10,4 +10,5 @@ public class User {
         this.pw = pw;
         this.onBus = onBus;
     }
+
 }
