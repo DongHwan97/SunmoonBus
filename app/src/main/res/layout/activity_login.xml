@@ -22,6 +22,7 @@
         android:orientation="vertical">
 
         <RadioGroup
+            android:id="@+id/rGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -32,7 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="학생" />
+                android:checked="true"
+                android:text="승객" />
 
             <RadioButton
                 android:id="@+id/rdoBtnDriver"
