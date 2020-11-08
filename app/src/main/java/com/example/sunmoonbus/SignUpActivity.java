@@ -69,12 +69,12 @@ public class SignUpActivity extends AppCompatActivity {
                             mDatabase.child("User").child(id).child("password").setValue(pw);
                             mDatabase.child("User").child(id).child("onBus").setValue(false);
                             startToast("회원가입에 성공하셨습니다.");
-                            gotoActivity(StartActivity.class);
+                            gotoActivity(LoginActivity.class);
                             break;
                     case R.id.rdoBtnDriver://기사 DB에 데이터저장
                         mDatabase.child("BusDriver").child(id).setValue(pw);
                         startToast("회원가입에 성공하셨습니다.");
-                        gotoActivity(StartActivity.class);
+                        gotoActivity(LoginActivity.class);
                         break;
                 }
             }else{

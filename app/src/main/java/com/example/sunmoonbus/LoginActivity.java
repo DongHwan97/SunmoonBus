@@ -1,24 +1,15 @@
 package com.example.sunmoonbus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
     EditText idEditText, pwEditText;
@@ -30,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
+        findViewById(R.id.startSignUpBtn).setOnClickListener(onClickListener);
+        findViewById(R.id.startFindPwBtn).setOnClickListener(onClickListener);
         idEditText = (EditText)findViewById(R.id.idEditText);
         pwEditText = (EditText)findViewById(R.id.pwEditText);
         rGroup = (RadioGroup)findViewById(R.id.rGroup);
@@ -52,6 +45,12 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.loginButton:
                     login();
                     break;
+                case R.id.startSignUpBtn:
+                    gotoActivity(SignUpActivity.class);
+                    break;
+                case R.id.startFindPwBtn:
+                    gotoActivity(FindPwActivity.class);
+                    break;
                 case R.id.rdoBtnPassenger:
                     idEditText.setHint("학번");
                     break;
@@ -69,10 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         if(id.length()>=10&&pw.length()>=6){
             switch(rGroup.getCheckedRadioButtonId()){
                 case R.id.rdoBtnPassenger://승객
-                    if(){
+                    if(id.equals("id")){
                         startToast("회원가입되지 않은 사용자 입니다.");
                     }else{
-                        if(){
+                        if(pw.equals("pw")){
                             startToast("로그인에 성공했습니다.");
                             gotoActivity(MainActivity.class);
                         }else{
@@ -81,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.rdoBtnDriver://기사 DB에 데이터저장
-                    if(){
+                    if(pw.equals("id")){
                         startToast("로그인에 성공했습니다.");
                         gotoActivity(MainActivity.class);
                     }else{

@@ -831,6 +831,8 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable login_bottomline
+drawable login_icon
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -935,6 +937,7 @@ id center
 id center_vertical
 id chain
 id chains
+id checkBtn
 id checkbox
 id checked
 id chronometer
@@ -1006,6 +1009,8 @@ id linear
 id listMode
 id list_item
 id loginButton
+id login_icon
+id login_line
 id logoutButton
 id message
 id middle
@@ -1075,9 +1080,8 @@ id src_in
 id src_over
 id standard
 id start
-id startFindPWbtn
+id startFindPwBtn
 id startHorizontal
-id startLoginBtn
 id startSignUpBtn
 id startVertical
 id staticLayout
@@ -1163,7 +1167,6 @@ layout activity_find_pw
 layout activity_login
 layout activity_main
 layout activity_sign_up
-layout activity_start
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone
