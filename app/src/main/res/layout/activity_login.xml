@@ -122,6 +122,7 @@
                 android:id="@+id/passwordButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:background="#00FFFFFF"
                 android:text="비밀번호 찾기"
                 android:textSize="13sp"
