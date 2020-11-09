@@ -9,15 +9,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 
 public class FirebaseDB2 {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    public boolean exist = false;
 
-    FirebaseDB2() {
-        //this.init();
-    }
+    public User user = new User();
 
     FirebaseDB2(String path) {
         database = FirebaseDatabase.getInstance();
@@ -25,14 +23,17 @@ public class FirebaseDB2 {
     }
 
     //아이디 중복 방지
-    public boolean isIdExist(String userID){
+    public User isIdExist(String userID, String type){
         final String id = userID;
-        exist = false;
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        myRef.child(type).child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                exist = snapshot.child(id).hasChildren();
-                System.out.println(snapshot.child(id).child("password").getValue());
+                if (snapshot.exists()) {
+                    user = new User(id, snapshot.child("password").getValue(String.class));
+                } else {
+                    user = new User();
+                }
             }
 
             @Override
@@ -41,40 +42,7 @@ public class FirebaseDB2 {
             }
         });
 
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-
-        }
-
-        return exist;
-    }
-
-    public boolean isPwMatch(String userID, String userPW){
-        final String id = userID;
-        final String pw = userPW;
-        exist = false;
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                 if (pw.equals(snapshot.child(id).child("password").getValue(String.class))) {
-                     exist = true;
-                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-
-        }
-
-        return exist;
+        return user;
     }
 
 

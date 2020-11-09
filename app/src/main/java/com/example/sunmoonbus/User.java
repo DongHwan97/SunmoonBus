@@ -5,10 +5,14 @@ public class User {
     public String pw;
     public String onBus;
 
-    public User(String id, String pw, String onBus) {
+    User() {}
+    User(String id, String pw) {
         this.id = id;
         this.pw = pw;
-        this.onBus = onBus;
+    }
+
+    public String getPW() {
+        return this.pw;
     }
 
 }
