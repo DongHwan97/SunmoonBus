@@ -84,8 +84,16 @@
         "source": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_icon.png.flat",
+        "source": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\login_icon.png"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_launcher_background.png.flat",
         "source": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_bottomline.png.flat",
+        "source": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\login_bottomline.png"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",

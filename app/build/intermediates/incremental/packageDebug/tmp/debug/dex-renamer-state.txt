@@ -1,4 +1,4 @@
-#Mon Nov 09 00:48:16 KST 2020
+#Tue Nov 10 05:38:31 KST 2020
 base.0=D\:\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
