@@ -1,52 +1,50 @@
 package com.example.sunmoonbus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
-import android.util.Log;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.concurrent.CountDownLatch;
 
 public class LoginActivity extends AppCompatActivity {
     EditText idEditText, pwEditText;
     RadioGroup rGroup;
     RadioButton rdoPassenger, rdoDriver;
-    FirebaseDB2 userDB;
-    Boolean once = true;
-    User user = new User();
     Toast toast;
+
+    FirebaseDB2 userDB;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        new FirebaseDB();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         userDB = new FirebaseDB2("User");
-        findViewById(R.id.loginButton).setOnClickListener(onClickListener);
+
         idEditText = (EditText)findViewById(R.id.idEditText);
         pwEditText = (EditText)findViewById(R.id.pwEditText);
         rGroup = (RadioGroup)findViewById(R.id.rGroup);
         rdoPassenger = (RadioButton)findViewById(R.id.rdoBtnPassenger);
         rdoDriver = (RadioButton)findViewById(R.id.rdoBtnDriver);
 
+        idEditText.setOnFocusChangeListener(onFocusChangePW);
+        idEditText.setOnKeyListener(onKeyID);
+
+        findViewById(R.id.signupButton).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
+
+        findViewById(R.id.registButton).setOnClickListener(onClickListener);
+        findViewById(R.id.passwordButton).setOnClickListener(onClickListener);
 
 
     }
@@ -57,20 +55,60 @@ public class LoginActivity extends AppCompatActivity {
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);
     }
+
     View.OnClickListener onClickListener=new View.OnClickListener(){
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.loginButton:
+                case R.id.signupButton:
                     login();
                     break;
+
                 case R.id.rdoBtnPassenger:
                     idEditText.setHint("  학번");
                     break;
+
                 case R.id.rdoBtnDriver:
                     idEditText.setHint("  전화번호");
                     break;
+
+                case R.id.registButton:
+                    gotoActivity(SignUpActivity.class);
+                break;
+
+                case R.id.passwordButton:
+                    gotoActivity(FindPWActivity.class);
+                    break;
+
+                default:
+                    break;
             }
+        }
+    };
+
+    EditText.OnFocusChangeListener onFocusChangePW = new EditText.OnFocusChangeListener() {
+
+        @Override
+        public void onFocusChange(View view, boolean b) {
+            System.out.println("포커스 준비!");
+            String id = idEditText.getText().toString();
+            String type = (rGroup.getCheckedRadioButtonId()
+                            == R.id.rdoBtnPassenger) ? "St" : "Bd";
+
+            user = userDB.isIdExist(id, type);
+        }
+    };
+
+    EditText.OnKeyListener onKeyID = new EditText.OnKeyListener() {
+        @Override
+        public boolean onKey(View view, int i, KeyEvent keyEvent) {
+            System.out.println("포커스 준비!");
+            String id = idEditText.getText().toString();
+            String type = (rGroup.getCheckedRadioButtonId()
+                    == R.id.rdoBtnPassenger) ? "St" : "Bd";
+
+            user = userDB.isIdExist(id, type);
+            return false;
         }
     };
 
@@ -78,25 +116,30 @@ public class LoginActivity extends AppCompatActivity {
         String id = idEditText.getText().toString();
         String pw = pwEditText.getText().toString();
 
-        if(id.length() < 9 || pw.length() < 5){
-            startToast("학번은 10자리이상, 비밀번호는 6자리이상입니다.");
+        String type = (rGroup.getCheckedRadioButtonId()
+                == R.id.rdoBtnPassenger) ? "St" : "Bd";
+
+        //아이디 및 비밀번호 조건
+        if(id.length() < ((type.equals("St")) ? 9 : 10) || pw.length() < 5) {
+            startToast(((type.equals("St")) ? "학번은 10자" : "전화번호는 11자")
+                        + "리, 비밀번호는 6자리이상입니다. (1)");
             return;
         }
 
-        String type = (rGroup.getCheckedRadioButtonId() == R.id.rdoBtnPassenger) ? "St" : "Bd";
-
+        //길이제한 컷
+        id = id.substring(0, ((type.equals("St")) ? 10 : 11));
         user = userDB.isIdExist(id, type);
 
-        //무적권 2번...맘에안듬
-        if(once) {
-            startToast("다시 시도해주세요 (1)");
-            once = false;
+        //혹시모름
+        if(user == null) {
+            startToast("다시 시도해주세요 (-1)");
             return;
         }
 
+        //계정없거나 ID 또는 PW 오류
         if(user.id == null || !user.getPW().equals(SunmoonUtil.toSHAString(pw)) || !user.id.equals(id)) {
-            startToast("ID 또는 비밀번호를 다시 확인해주세요 (2)");
-            //once = true;
+            startToast(((type.equals("St")) ? "학번" : "전화번호")
+                        + " 또는 비밀번호를 다시 확인해주세요 (2)");
             return;
         }
 

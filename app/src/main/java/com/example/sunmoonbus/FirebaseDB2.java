@@ -30,6 +30,7 @@ public class FirebaseDB2 {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) {
+                    user = new User("NONE", "NONE");
                     return;
                 }
 
@@ -46,14 +47,10 @@ public class FirebaseDB2 {
     }
 
 
-
     //회원가입 완료시키기
-    /*public void upUserInfo(User userInfo) {
-        User user = userInfo;
-
-        myRef.child(user.id).child("password").setValue(user.pw);
-        myRef.child(user.id).child("onBus").setValue("none");
-
-    }*/
+    public void upUserInfo(User userInfo, String type) {
+        myRef.child(type).child(userInfo.id).child("password").setValue(SunmoonUtil.toSHAString(userInfo.getPW()));
+        myRef.child(type).child(userInfo.id).child("onBus").setValue("none");
+    }
 
 }
