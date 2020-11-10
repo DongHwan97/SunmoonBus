@@ -15,7 +15,7 @@ public class FirebaseDB2 {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    public User user = new User();
+    private User user = null;
 
     FirebaseDB2(String path) {
         database = FirebaseDatabase.getInstance();
@@ -29,11 +29,11 @@ public class FirebaseDB2 {
         myRef.child(type).child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    user = new User(id, snapshot.child("password").getValue(String.class));
-                } else {
-                    user = new User();
+                if (!snapshot.exists()) {
+                    return;
                 }
+
+                user = new User(id, snapshot.child("password").getValue(String.class));
             }
 
             @Override

@@ -2,10 +2,14 @@ package com.example.sunmoonbus;
 
 public class User {
     public String id;
-    public String pw;
+    private String pw;
     public String onBus;
 
-    User() {}
+    User() {
+        this.id = null;
+        this.pw = null;
+        this.onBus = null;
+    }
     User(String id, String pw) {
         this.id = id;
         this.pw = pw;

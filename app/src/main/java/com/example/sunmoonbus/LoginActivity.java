@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDB2 userDB;
     Boolean once = true;
     User user = new User();
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(user.id == null || !user.getPW().equals(SunmoonUtil.toSHAString(pw)) || !user.id.equals(id)) {
             startToast("ID 또는 비밀번호를 다시 확인해주세요 (2)");
-            once = true;
+            //once = true;
             return;
         }
 
@@ -112,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
             default:
                 break;
         }
-        return;
     }
 
     private void gotoActivity(Class c){
@@ -121,6 +121,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void startToast(String msg){
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        if (toast != null) {
+            toast.cancel();
+        }
+
+        toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
