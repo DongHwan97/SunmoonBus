@@ -30,7 +30,7 @@
                     android:layout_height="90dp"
                     android:layout_marginBottom="15dp"
                     android:background="#FFFFFF"
-                    android:drawableLeft="@drawable/Bus_icon"
+                    android:drawableLeft="@drawable/bus_icon"
                     android:drawablePadding="20dp"
                     android:gravity="center|left"
                     android:paddingLeft="25dp"
@@ -68,7 +68,7 @@
                     android:layout_height="90dp"
                     android:layout_marginBottom="15dp"
                     android:background="#FFFFFF"
-                    android:drawableLeft="@drawable/Bus_icon"
+                    android:drawableLeft="@drawable/bus_icon"
                     android:drawablePadding="20dp"
                     android:gravity="center|left"
                     android:paddingLeft="25dp"
@@ -107,7 +107,7 @@
                     android:layout_height="90dp"
                     android:layout_marginBottom="15dp"
                     android:background="#FFFFFF"
-                    android:drawableLeft="@drawable/Bus_icon"
+                    android:drawableLeft="@drawable/bus_icon"
                     android:drawablePadding="20dp"
                     android:gravity="center|left"
                     android:paddingLeft="25dp"
@@ -147,6 +147,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:background="#00FFFFFF"
-            app:srcCompat="@drawable/Bus_refresh_button" />
+            app:srcCompat="@drawable/bus_refresh_button" />
     </LinearLayout>
 </LinearLayout>

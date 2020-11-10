@@ -13,19 +13,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText idEditText, pwEditText, pwCheckEditText;
     RadioGroup rGroup;
     RadioButton rdoPassenger, rdoDriver;
-    DatabaseReference mDatabase;
+    DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         findViewById(R.id.signupButton).setOnClickListener(onClickListener);
         idEditText = (EditText)findViewById(R.id.idEditText);
         pwEditText = (EditText)findViewById(R.id.pwEditText);
@@ -35,13 +37,6 @@ public class SignUpActivity extends AppCompatActivity {
         rdoDriver = (RadioButton)findViewById(R.id.rdoBtnDriver);
         findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
-    }
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-        moveTaskToBack(true);
-        android.os.Process.killProcess(android.os.Process.myPid());
-        System.exit(1);
     }
 
     View.OnClickListener onClickListener=new View.OnClickListener(){
@@ -62,7 +57,6 @@ public class SignUpActivity extends AppCompatActivity {
     };
 
 
-
     private void signUp(){
         String id = idEditText.getText().toString();
         String pw = pwEditText.getText().toString();
@@ -72,14 +66,15 @@ public class SignUpActivity extends AppCompatActivity {
             if(pw.equals(pwCheck)){
                 switch(rGroup.getCheckedRadioButtonId()){
                     case R.id.rdoBtnPassenger://승객 기본값 DB에 데이터 저장
-                        mDatabase.child("User").child(id).setValue(pw);
-                        startToast("회원가입에 성공하셨습니다.");
-                        gotoActivity(StartActivity.class);
-                        break;
+                            mDatabase.child("User").child(id).child("password").setValue(pw);
+                            mDatabase.child("User").child(id).child("onBus").setValue(false);
+                            startToast("회원가입에 성공하셨습니다.");
+                            gotoActivity(LoginActivity.class);
+                            break;
                     case R.id.rdoBtnDriver://기사 DB에 데이터저장
                         mDatabase.child("BusDriver").child(id).setValue(pw);
                         startToast("회원가입에 성공하셨습니다.");
-                        gotoActivity(StartActivity.class);
+                        gotoActivity(LoginActivity.class);
                         break;
                 }
             }else{
