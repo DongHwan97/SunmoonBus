@@ -800,6 +800,7 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable background_gradation
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -808,6 +809,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable bus_1
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -827,10 +829,15 @@ drawable common_google_signin_btn_text_light
 drawable common_google_signin_btn_text_light_focused
 drawable common_google_signin_btn_text_light_normal
 drawable common_google_signin_btn_text_light_normal_background
+drawable edittext_soft
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable login_bottomline
+drawable login_btn
+drawable login_icon
+drawable normal_btn
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -843,11 +850,15 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable person
+drawable soft
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
 id CTRL
 id FUNCTION
+id Login_icon
+id Login_line
 id META
 id NO_DEBUG
 id SHIFT
@@ -929,6 +940,8 @@ id beginning
 id blocking
 id bottom
 id bounce
+id bus
+id busId
 id buttonPanel
 id cache_measures
 id center
@@ -951,6 +964,7 @@ id decor_content_parent
 id default_activity_button
 id deltaRelative
 id dependency_ordering
+id desti
 id dialog_button
 id dimensions
 id direct
@@ -973,9 +987,6 @@ id expanded_menu
 id flip
 id forever
 id gone
-id gotoCheckBusButton
-id gotoCheckBusScheduleButton
-id gotoCheckPassengerButton
 id graph
 id graph_wrap
 id group_divider
@@ -1006,7 +1017,6 @@ id linear
 id listMode
 id list_item
 id loginButton
-id logoutButton
 id message
 id middle
 id motion_base
@@ -1023,6 +1033,7 @@ id packed
 id parent
 id parentPanel
 id parentRelative
+id passwordButton
 id path
 id pathRelative
 id percent
@@ -1038,6 +1049,7 @@ id ratio
 id rdoBtnDriver
 id rdoBtnPassenger
 id rectangles
+id registButton
 id reverseSawtooth
 id right
 id right_icon
@@ -1062,7 +1074,6 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
-id signupButton
 id sin
 id spacer
 id spline
@@ -1075,10 +1086,7 @@ id src_in
 id src_over
 id standard
 id start
-id startFindPWbtn
 id startHorizontal
-id startLoginBtn
-id startSignUpBtn
 id startVertical
 id staticLayout
 id staticPostLayout
@@ -1086,6 +1094,7 @@ id stop
 id submenuarrow
 id submit_area
 id tabMode
+id tagId
 id tag_accessibility_actions
 id tag_accessibility_clickable_spans
 id tag_accessibility_heading
@@ -1113,7 +1122,9 @@ id unchecked
 id uniform
 id up
 id useLogo
+id userCnt
 id visible
+id wait
 id wide
 id withText
 id wrap
@@ -1161,9 +1172,8 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_find_pw
 layout activity_login
-layout activity_main
 layout activity_sign_up
-layout activity_start
+layout activity_tag
 layout custom_dialog
 layout notification_action
 layout notification_action_tombstone

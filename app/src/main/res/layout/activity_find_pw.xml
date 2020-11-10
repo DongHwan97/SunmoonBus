@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:background="@drawable/background_gradation"
     android:orientation="vertical">
 
     <TextView
@@ -17,14 +17,18 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:gravity="center_horizontal"
+        android:background="@drawable/soft"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <RadioGroup
             android:id="@+id/rGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -32,32 +36,48 @@
                 android:id="@+id/rdoBtnPassenger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:buttonTint="#000000"
                 android:checked="true"
-                android:text="승객" />
+                android:text="학생" />
 
             <RadioButton
                 android:id="@+id/rdoBtnDriver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:buttonTint="#000000"
                 android:text="기사" />
 
         </RadioGroup>
 
         <EditText
             android:id="@+id/idEditText"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:ems="10"
             android:hint="학번"
             android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/checkBtn"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/pwEditText"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="확인" />
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:hint="비밀번호"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/normal_btn"
+            android:text="비밀번호 찾기"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 </LinearLayout>
