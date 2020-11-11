@@ -31,11 +31,14 @@ public class FirebaseDB {
 
                     for (DataSnapshot data1 : data.getChildren()) {
                         switch (data1.getKey()) {
-                            case "Desti" :
+                            case "desti" :
                                 busInfo.get(busID).Destination = data1.getValue(String.class);
                                 break;
-                            case "location" :
-                                busInfo.get(busID).location = data1.getValue(String.class);
+                            case "longitude" :
+                                busInfo.get(busID).longitude = data1.getValue(Double.class);
+                                break;
+                            case "latitude" :
+                                busInfo.get(busID).latitude = data1.getValue(Double.class);
                                 break;
                             case "userCount" :
                                 busInfo.get(busID).userCount = data1.getValue(Integer.class);
@@ -64,11 +67,14 @@ public class FirebaseDB {
                     String busID = data.getKey();
                     for (DataSnapshot data1 : data.getChildren()) {
                         switch (data1.getKey()) {
-                            case "Desti" :
+                            case "desti" :
                                 busInfo.get(busID).Destination = data1.getValue(String.class);
                                 break;
-                            case "location" :
-                                busInfo.get(busID).location = data1.getValue(String.class);
+                            case "longitude" :
+                                busInfo.get(busID).longitude = data1.getValue(Double.class);
+                                break;
+                            case "latitude" :
+                                busInfo.get(busID).latitude = data1.getValue(Double.class);
                                 break;
                             case "userCount" :
                                 busInfo.get(busID).userCount = data1.getValue(Integer.class);

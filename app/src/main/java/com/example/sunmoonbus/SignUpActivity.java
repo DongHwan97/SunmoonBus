@@ -49,15 +49,10 @@ public class SignUpActivity extends AppCompatActivity {
         pwCheckEditText = (EditText)findViewById(R.id.pwEditTextCheck);
         rGroup = (RadioGroup)findViewById(R.id.rGroup);
 
-        //rdoPassenger = (RadioButton)findViewById(R.id.rdoBtnPassenger);
-        //rdoDriver = (RadioButton)findViewById(R.id.rdoBtnDriver);
-
-        signupBtn = (Button) findViewById(R.id.signupButton);
-
         idEditText.setOnFocusChangeListener(onFocusChangePW);
         idEditText.setOnKeyListener(onKeyID);
 
-        signupBtn.setOnClickListener(onClickListener);
+        findViewById(R.id.loginButton).setOnClickListener(onClickListener);
 
         findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
@@ -67,14 +62,14 @@ public class SignUpActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.signupButton:
+                case R.id.loginButton:
                     signUp();
                     break;
                 case R.id.rdoBtnPassenger:
-                    idEditText.setHint(" 학번");
+                    idEditText.setHint("학번");
                     break;
                 case R.id.rdoBtnDriver:
-                    idEditText.setHint(" 전화번호");
+                    idEditText.setHint("전화번호 ('-'제외)");
                     break;
             }
         }
@@ -84,24 +79,20 @@ public class SignUpActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            System.out.println("포커스 준비!");
-            String id = idEditText.getText().toString();
-            String type = (rGroup.getCheckedRadioButtonId()
-                    == R.id.rdoBtnPassenger) ? "St" : "Bd";
-
-            user = userDB.isIdExist(id, type);
+            //System.out.println("포커스 준비!");
+            user = userDB.isIdExist(idEditText.getText().toString(),
+                    ((rGroup.getCheckedRadioButtonId()
+                            == R.id.rdoBtnPassenger) ? "St" : "Bd"));
         }
     };
 
     EditText.OnKeyListener onKeyID = new EditText.OnKeyListener() {
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            System.out.println("포커스 준비!");
-            String id = idEditText.getText().toString();
-            String type = (rGroup.getCheckedRadioButtonId()
-                    == R.id.rdoBtnPassenger) ? "St" : "Bd";
-
-            user = userDB.isIdExist(id, type);
+            //System.out.println("포커스 준비!");
+            user = userDB.isIdExist(idEditText.getText().toString(),
+                    ((rGroup.getCheckedRadioButtonId()
+                            == R.id.rdoBtnPassenger) ? "St" : "Bd"));
             return false;
         }
     };
@@ -158,6 +149,18 @@ public class SignUpActivity extends AppCompatActivity {
         userDB.upUserInfo(new User(id, pw), type);
 
         startToast("회원가입을 성공했습니다");
+
+        try {
+            Thread.sleep(500);
+
+            Intent intent = new Intent();
+            intent.putExtra("id", id);
+            setResult(RESULT_OK, intent);
+
+            finish();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void startToast(String msg){
@@ -167,11 +170,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
         toast.show();
-    }
-
-    private void gotoActivity(Class c){
-        Intent intent = new Intent(this,c);
-        startActivity(intent);
     }
 
 }

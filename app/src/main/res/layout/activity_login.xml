@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFD966"
+    android:background="@drawable/background_gradation"
     android:orientation="vertical"
     android:paddingBottom="40dp">
 
@@ -20,7 +20,7 @@
             android:layout_height="257dp"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/Login_icon" />
+            app:srcCompat="@drawable/login_icon" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,10 +34,13 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/edittext_soft"
+                android:editable="false"
                 android:ems="10"
-                android:hint="  학번"
-                android:inputType="textPersonName" />
+                android:hint="학번"
+                android:inputType="textPersonName"
+                android:paddingLeft="30px"
+                android:radius="15dp" />
 
             <EditText
                 android:id="@+id/pwEditText"
@@ -45,7 +48,7 @@
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:background="#FFFFFF"
+                android:background="@drawable/edittext_soft"
                 android:ems="10"
                 android:hint="  비밀번호"
                 android:inputType="textPassword" />
@@ -56,31 +59,35 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
-                android:background="#3B3838"
+                android:background="@drawable/login_btn"
                 android:text="로그인"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/rGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/rdoBtnPassenger"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="학생" />
+                    android:buttonTint="#000000"
+                    android:checked="true"
+                    android:text="학생"
+                    android:textColor="#FFFFFF" />
 
                 <RadioButton
                     android:id="@+id/rdoBtnDriver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="기사" />
+                    android:buttonTint="#000000"
+                    android:text="기사"
+                    android:textColor="#FFFFFF" />
             </RadioGroup>
         </LinearLayout>
 
@@ -99,40 +106,37 @@
             android:id="@+id/Login_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/Login_bottomline" />
+            app:srcCompat="@drawable/login_bottomline" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <Button
                 android:id="@+id/registButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10dp"
                 android:background="#00FFFFFF"
                 android:text="회원가입"
-                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
                 android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-            </LinearLayout>
 
             <Button
                 android:id="@+id/passwordButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
                 android:background="#00FFFFFF"
                 android:text="비밀번호 찾기"
-                android:textSize="10sp"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 
 </LinearLayout>

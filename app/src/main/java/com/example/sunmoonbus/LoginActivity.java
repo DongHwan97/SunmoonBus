@@ -39,16 +39,15 @@ public class LoginActivity extends AppCompatActivity {
         idEditText.setOnFocusChangeListener(onFocusChangePW);
         idEditText.setOnKeyListener(onKeyID);
 
-        findViewById(R.id.signupButton).setOnClickListener(onClickListener);
+        findViewById(R.id.loginButton).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
 
         findViewById(R.id.registButton).setOnClickListener(onClickListener);
         findViewById(R.id.passwordButton).setOnClickListener(onClickListener);
-
-
     }
 
+    @Override
     public void onBackPressed(){
         super.onBackPressed();
         moveTaskToBack(true);
@@ -56,20 +55,36 @@ public class LoginActivity extends AppCompatActivity {
         System.exit(1);
     }
 
+    //회원가입 완료시 회원가입시 썼던 아이디 가져와서 미리 써두기
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (resultCode) {
+            case RESULT_OK:
+                idEditText.setText(data.getStringExtra("id"));
+                break;
+
+            default:
+                break;
+
+        }
+
+    }
+
     View.OnClickListener onClickListener=new View.OnClickListener(){
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.signupButton:
+                case R.id.loginButton:
                     login();
                     break;
 
                 case R.id.rdoBtnPassenger:
-                    idEditText.setHint("  학번");
+                    idEditText.setHint("학번");
                     break;
 
                 case R.id.rdoBtnDriver:
-                    idEditText.setHint("  전화번호");
+                    idEditText.setHint("전화번호 ('-'제외)");
                     break;
 
                 case R.id.registButton:
@@ -90,24 +105,21 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            System.out.println("포커스 준비!");
-            String id = idEditText.getText().toString();
-            String type = (rGroup.getCheckedRadioButtonId()
-                            == R.id.rdoBtnPassenger) ? "St" : "Bd";
-
-            user = userDB.isIdExist(id, type);
+            //System.out.println("포커스 준비!");
+            user = userDB.isIdExist(idEditText.getText().toString(),
+                    ((rGroup.getCheckedRadioButtonId()
+                            == R.id.rdoBtnPassenger) ? "St" : "Bd"));
         }
     };
 
     EditText.OnKeyListener onKeyID = new EditText.OnKeyListener() {
+
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            System.out.println("포커스 준비!");
-            String id = idEditText.getText().toString();
-            String type = (rGroup.getCheckedRadioButtonId()
-                    == R.id.rdoBtnPassenger) ? "St" : "Bd";
-
-            user = userDB.isIdExist(id, type);
+            //System.out.println("포커스 준비!");
+            user = userDB.isIdExist(idEditText.getText().toString(),
+                    ((rGroup.getCheckedRadioButtonId()
+                    == R.id.rdoBtnPassenger) ? "St" : "Bd"));
             return false;
         }
     };
@@ -159,8 +171,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void gotoActivity(Class c){
-        Intent intent = new Intent(this,c);
-        startActivity(intent);
+        Intent intent = new Intent(this, c);
+        startActivityForResult(intent, 0);
     }
 
     private void startToast(String msg){
