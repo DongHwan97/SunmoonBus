@@ -9,6 +9,8 @@
         android:targetSdkVersion="30" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
     <!-- <uses-sdk android:minSdkVersion="14"/> -->
@@ -22,10 +24,18 @@
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
         android:label="선문대학교 셔틀버스"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+        <activity android:name="com.example.sunmoonbus.GpsActivity" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="b4a6fab021104552ca5a029ba114d841" />
+
         <activity android:name="com.example.sunmoonbus.FindPwActivity" />
         <activity android:name="com.example.sunmoonbus.SignUpActivity" />
         <activity android:name="com.example.sunmoonbus.MainActivity" />

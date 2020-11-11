@@ -808,6 +808,7 @@ drawable btn_radio_off_mtrl
 drawable btn_radio_off_to_on_mtrl_animation
 drawable btn_radio_on_mtrl
 drawable btn_radio_on_to_off_mtrl_animation
+drawable bus_marker
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -931,6 +932,10 @@ id beginning
 id blocking
 id bottom
 id bounce
+id btn1
+id btn2
+id btn3
+id btn4
 id buttonPanel
 id cache_measures
 id center
@@ -976,9 +981,6 @@ id expanded_menu
 id flip
 id forever
 id gone
-id gotoCheckBusButton
-id gotoCheckBusScheduleButton
-id gotoCheckPassengerButton
 id graph
 id graph_wrap
 id group_divider
@@ -1011,7 +1013,7 @@ id list_item
 id loginButton
 id login_icon
 id login_line
-id logoutButton
+id map_view
 id message
 id middle
 id motion_base
@@ -1103,11 +1105,14 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textView
+id textView1
+id textView2
 id time
 id title
 id titleDividerNoCustom
 id title_template
 id toggle
+id toggle1
 id top
 id topPanel
 id transitionToEnd
@@ -1164,6 +1169,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_find_pw
+layout activity_gps
 layout activity_login
 layout activity_main
 layout activity_sign_up
@@ -1660,3 +1666,4 @@ styleable Variant constraints region_heightLessThan region_heightMoreThan region
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml network_security_config

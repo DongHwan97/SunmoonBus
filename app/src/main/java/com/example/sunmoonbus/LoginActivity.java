@@ -68,10 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         if(id.length()>=10&&pw.length()>=6){
             switch(rGroup.getCheckedRadioButtonId()){
                 case R.id.rdoBtnPassenger://승객
-                    if(id.equals("id")){
+                    if(id.equals("1")){
                         startToast("회원가입되지 않은 사용자 입니다.");
                     }else{
-                        if(pw.equals("pw")){
+                        if(pw.equals("111111")){
                             startToast("로그인에 성공했습니다.");
                             gotoActivity(MainActivity.class);
                         }else{
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.rdoBtnDriver://기사 DB에 데이터저장
-                    if(pw.equals("id")){
+                    if(pw.equals("1")){
                         startToast("로그인에 성공했습니다.");
                         gotoActivity(MainActivity.class);
                     }else{

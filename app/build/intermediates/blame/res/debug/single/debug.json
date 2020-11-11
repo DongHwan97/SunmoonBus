@@ -32,6 +32,10 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\xml_network_security_config.xml.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\xml\\network_security_config.xml"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_login_icon.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\login_icon.png"
     },
@@ -54,6 +58,10 @@
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bus_marker.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\bus_marker.png"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_launcher_background.xml.flat",
@@ -82,6 +90,10 @@
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher_background.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_launcher_background.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_gps.xml.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\layout\\activity_gps.xml"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",

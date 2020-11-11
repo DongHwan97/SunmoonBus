@@ -25,28 +25,28 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/gotoCheckBusButton"
+            android:id="@+id/btn1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
             android:text="셔틀버스 위치확인" />
 
         <Button
-            android:id="@+id/gotoCheckPassengerButton"
+            android:id="@+id/btn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
             android:text="버스 혼잡도" />
 
         <Button
-            android:id="@+id/gotoCheckBusScheduleButton"
+            android:id="@+id/btn3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20sp"
             android:text="셔틀버스 시간표" />
 
         <Button
-            android:id="@+id/logoutButton"
+            android:id="@+id/btn4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="로그아웃" />
