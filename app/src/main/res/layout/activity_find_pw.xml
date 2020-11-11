@@ -38,14 +38,16 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="#000000"
                 android:checked="true"
-                android:text="학생" />
+                android:text="학생"
+                android:textSize="15sp" />
 
             <RadioButton
                 android:id="@+id/rdoBtnDriver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="#000000"
-                android:text="기사" />
+                android:text="기사"
+                android:textSize="15sp" />
 
         </RadioGroup>
 
@@ -54,18 +56,21 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:ems="10"
+            android:digits="1234567890"
+            android:maxLength="11"
             android:hint="학번"
-            android:inputType="textPersonName" />
+            android:inputType="number"
+            android:padding="30px" />
 
         <EditText
             android:id="@+id/pwEditText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:ems="10"
+            android:maxLength="20"
             android:hint="비밀번호"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:padding="30px" />
 
         <Button
             android:id="@+id/loginButton"

@@ -32,25 +32,25 @@
                 android:id="@+id/idEditText"
                 android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_soft"
-                android:editable="false"
-                android:ems="10"
-                android:hint="  학번"
-                android:inputType="textPersonName"
+                android:digits="1234567890"
+                android:maxLength="11"
+                android:hint="학번"
+                android:inputType="number"
+                android:padding="30px"
                 android:radius="15dp" />
 
             <EditText
                 android:id="@+id/pwEditText"
                 android:layout_width="300dp"
                 android:layout_height="45dp"
-                android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edittext_soft"
-                android:ems="10"
-                android:hint="  비밀번호"
-                android:inputType="textPassword" />
+                android:maxLength="20"
+                android:hint="비밀번호"
+                android:inputType="textPassword"
+                android:padding="30px" />
 
             <Button
                 android:id="@+id/loginButton"
@@ -77,6 +77,7 @@
                     android:buttonTint="#000000"
                     android:checked="true"
                     android:text="학생"
+                    android:textSize="15sp"
                     android:textColor="#FFFFFF" />
 
                 <RadioButton
@@ -86,6 +87,7 @@
                     android:layout_marginRight="10dp"
                     android:buttonTint="#000000"
                     android:text="기사"
+                    android:textSize="15sp"
                     android:textColor="#FFFFFF" />
             </RadioGroup>
         </LinearLayout>
@@ -120,7 +122,7 @@
                 android:background="#00FFFFFF"
                 android:text="회원가입"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <Button
@@ -132,7 +134,7 @@
                 android:background="#00FFFFFF"
                 android:text="비밀번호 찾기"
                 android:textColor="#FFFFFF"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
         </RelativeLayout>
