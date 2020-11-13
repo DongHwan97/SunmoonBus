@@ -22,33 +22,15 @@ public class FirebaseDB {
         myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     String busID = data.getKey();
 
                     busInfo.put(busID, new BusInfo());
 
                     for (DataSnapshot data1 : data.getChildren()) {
-                        switch (data1.getKey()) {
-                            case "desti" :
-                                busInfo.get(busID).Destination = data1.getValue(String.class);
-                                break;
-                            case "longitude" :
-                                busInfo.get(busID).longitude = data1.getValue(Double.class);
-                                break;
-                            case "latitude" :
-                                busInfo.get(busID).latitude = data1.getValue(Double.class);
-                                break;
-                            case "userCount" :
-                                busInfo.get(busID).userCount = data1.getValue(Integer.class);
-                                break;
-                            default:
-                                break;
-                        }
+                        busInfo.get(busID).upDateInfo(data1.getKey(), data1.getValue(Object.class));
                     }
                 }
-                //Log.d(TAG, "Value is: " + value);
             }
 
             @Override
@@ -61,30 +43,13 @@ public class FirebaseDB {
         myRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
                     String busID = data.getKey();
+
                     for (DataSnapshot data1 : data.getChildren()) {
-                        switch (data1.getKey()) {
-                            case "desti" :
-                                busInfo.get(busID).Destination = data1.getValue(String.class);
-                                break;
-                            case "longitude" :
-                                busInfo.get(busID).longitude = data1.getValue(Double.class);
-                                break;
-                            case "latitude" :
-                                busInfo.get(busID).latitude = data1.getValue(Double.class);
-                                break;
-                            case "userCount" :
-                                busInfo.get(busID).userCount = data1.getValue(Integer.class);
-                                break;
-                            default:
-                                break;
-                        }
+                        busInfo.get(busID).upDateInfo(data1.getKey(), data1.getValue(Object.class));
                     }
                 }
-                //Log.d(TAG, "Value is: " + value);
             }
 
             @Override

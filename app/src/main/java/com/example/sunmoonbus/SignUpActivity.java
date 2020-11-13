@@ -44,10 +44,10 @@ public class SignUpActivity extends AppCompatActivity {
         userDB = new FirebaseDB2("User");
         setContentView(R.layout.activity_sign_up);
 
-        idEditText = (EditText)findViewById(R.id.idEditText);
-        pwEditText = (EditText)findViewById(R.id.pwEditText);
-        pwCheckEditText = (EditText)findViewById(R.id.pwEditTextCheck);
-        rGroup = (RadioGroup)findViewById(R.id.rGroup);
+        idEditText = findViewById(R.id.idEditText);
+        pwEditText = findViewById(R.id.pwEditText);
+        pwCheckEditText = findViewById(R.id.pwEditTextCheck);
+        rGroup = findViewById(R.id.rGroup);
 
         idEditText.setOnFocusChangeListener(onFocusChangePW);
         idEditText.setOnKeyListener(onKeyID);
@@ -79,7 +79,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            //System.out.println("포커스 준비!");
             user = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));
@@ -89,7 +88,6 @@ public class SignUpActivity extends AppCompatActivity {
     EditText.OnKeyListener onKeyID = new EditText.OnKeyListener() {
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            //System.out.println("포커스 준비!");
             user = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));

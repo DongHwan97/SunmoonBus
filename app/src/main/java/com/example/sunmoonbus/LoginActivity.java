@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -30,11 +31,11 @@ public class LoginActivity extends AppCompatActivity {
 
         userDB = new FirebaseDB2("User");
 
-        idEditText = (EditText)findViewById(R.id.idEditText);
-        pwEditText = (EditText)findViewById(R.id.pwEditText);
-        rGroup = (RadioGroup)findViewById(R.id.rGroup);
-        rdoPassenger = (RadioButton)findViewById(R.id.rdoBtnPassenger);
-        rdoDriver = (RadioButton)findViewById(R.id.rdoBtnDriver);
+        idEditText = findViewById(R.id.idEditText);
+        pwEditText = findViewById(R.id.pwEditText);
+        rGroup = findViewById(R.id.rGroup);
+        rdoPassenger = findViewById(R.id.rdoBtnPassenger);
+        rdoDriver = findViewById(R.id.rdoBtnDriver);
 
         idEditText.setOnFocusChangeListener(onFocusChangePW);
         idEditText.setOnKeyListener(onKeyID);
@@ -105,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            //System.out.println("포커스 준비!");
             user = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));
@@ -116,7 +116,6 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            //System.out.println("포커스 준비!");
             user = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                     == R.id.rdoBtnPassenger) ? "St" : "Bd"));
@@ -157,17 +156,7 @@ public class LoginActivity extends AppCompatActivity {
 
         startToast("로그인에 성공했습니다");
 
-        switch(type){
-            case "St"://승객 화면
-                gotoActivity(MainActivity.class);
-                break;
-
-            case "Bd"://기사 화면
-                break;
-
-            default:
-                break;
-        }
+        gotoActivity(MenuActivity.class);
     }
 
     private void gotoActivity(Class c){
