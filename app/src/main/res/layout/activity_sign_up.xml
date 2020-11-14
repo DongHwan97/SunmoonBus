@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:gravity="center"
         android:text="회원가입"
         android:textColor="#000000"
@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:gravity="center_horizontal"
         android:background="@drawable/soft"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -56,8 +56,19 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="학번"
             android:digits="1234567890"
+            android:hint="학번"
+            android:inputType="number"
+            android:maxLength="11"
+            android:padding="30px" />
+
+        <EditText
+            android:id="@+id/phoneEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:digits="1234567890"
+            android:hint="전화번호 ('-' 제외)"
             android:inputType="number"
             android:maxLength="11"
             android:padding="30px" />
@@ -67,9 +78,9 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:maxLength="20"
             android:hint="비밀번호"
             android:inputType="textPassword"
+            android:maxLength="20"
             android:padding="30px" />
 
         <EditText
@@ -77,13 +88,13 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:maxLength="20"
             android:hint="비밀번호확인"
             android:inputType="textPassword"
+            android:maxLength="20"
             android:padding="30px" />
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/signupButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

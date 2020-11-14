@@ -17,47 +17,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_margin="10dp"
         android:background="@drawable/soft"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="20dp">
 
-        <RadioGroup
-            android:id="@+id/rGroup"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/rdoBtnPassenger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="#000000"
-                android:checked="true"
-                android:text="학생"
-                android:textSize="15sp" />
-
-            <RadioButton
-                android:id="@+id/rdoBtnDriver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:buttonTint="#000000"
-                android:text="기사"
-                android:textSize="15sp" />
-
-        </RadioGroup>
+            android:text="새로운 비밀번호를 입력해주세요" />
 
         <EditText
             android:id="@+id/idEditText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:digits="1234567890"
-            android:hint="학번"
+            android:hint="비밀번호"
             android:inputType="number"
             android:maxLength="11"
             android:padding="30px" />
@@ -67,7 +49,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="전화번호 ('-' 제외)"
+            android:hint="비밀번호 확인"
             android:inputType="textPassword"
             android:maxLength="20"
             android:padding="30px" />
@@ -78,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/normal_btn"
-            android:text="확인"
+            android:text="비밀번호 재설정"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />

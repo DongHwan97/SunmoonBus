@@ -1,0 +1,77 @@
+package com.example.sunmoonbus;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+public class FindPWActivity extends AppCompatActivity {
+    EditText idEditText;
+    RadioGroup rGroup;
+    RadioButton rdoPassenger, rdoDriver;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_find_pw);
+
+        findViewById(R.id.checkBtn).setOnClickListener(onClickListener);
+        idEditText = (EditText)findViewById(R.id.idEditText);
+        rGroup = (RadioGroup)findViewById(R.id.rGroup);
+        rdoPassenger = (RadioButton)findViewById(R.id.rdoBtnPassenger);
+        rdoDriver = (RadioButton)findViewById(R.id.rdoBtnDriver);
+        findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
+        findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.checkBtn:
+                    send();
+                    break;
+                case R.id.rdoBtnPassenger:
+                    idEditText.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.rdoBtnDriver:
+                    idEditText.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    };
+
+    private void send() {
+        /*String id = idEditText.getText().toString();
+
+
+        if(id.length()>=10){
+                            if (task.isSuccessful()) {
+                                startToast("전송완료");
+                            }
+                            else{
+                                startToast("전송실패");
+                            }
+                        }
+                    });
+        }else{
+            startToast("아이디는 10자 이상입니다.");
+        }*/
+    }
+
+    private void startToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+    private void gotoActivity(Class c){
+        Intent intent = new Intent(this,c);
+        startActivity(intent);
+    }
+
+}
