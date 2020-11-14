@@ -38,10 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
-            android:digits="1234567890"
             android:hint="비밀번호"
-            android:inputType="number"
-            android:maxLength="11"
+            android:inputType="textPassword"
+            android:maxLength="20"
             android:padding="30px" />
 
         <EditText
