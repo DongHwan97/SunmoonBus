@@ -59,7 +59,7 @@
             android:digits="1234567890"
             android:hint="학번"
             android:inputType="number"
-            android:maxLength="11"
+            android:maxLength="10"
             android:padding="30px" />
 
         <EditText
@@ -67,9 +67,10 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:digits="1234567890"
             android:hint="전화번호 ('-' 제외)"
-            android:inputType="textPassword"
-            android:maxLength="20"
+            android:inputType="number"
+            android:maxLength="11"
             android:padding="30px" />
 
         <Button
