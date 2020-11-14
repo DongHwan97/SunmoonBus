@@ -22,7 +22,7 @@ public class FindPwActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pw);
 
-        findViewById(R.id.checkBtn).setOnClickListener(onClickListener);
+        findViewById(R.id.loginButton).setOnClickListener(onClickListener);
         idEditText = (EditText)findViewById(R.id.idEditText);
         rGroup = (RadioGroup)findViewById(R.id.rGroup);
         rdoPassenger = (RadioButton)findViewById(R.id.rdoBtnPassenger);
@@ -35,7 +35,7 @@ public class FindPwActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.checkBtn:
+                case R.id.loginButton:
                     send();
                     break;
                 case R.id.rdoBtnPassenger:

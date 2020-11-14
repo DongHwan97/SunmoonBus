@@ -12,15 +12,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.btn1).setOnClickListener(onClickListener);;
+        findViewById(R.id.nfc_button).setOnClickListener(onClickListener);
+        findViewById(R.id.buslist_button).setOnClickListener(onClickListener);
+        findViewById(R.id.schedule_button).setOnClickListener(onClickListener);
+        findViewById(R.id.button18).setOnClickListener(onClickListener);
     }
     View.OnClickListener onClickListener=new View.OnClickListener(){
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.btn1:
+                case R.id.nfc_button:
+
+                    break;
+                case R.id.buslist_button:
+
+                    break;
+                case R.id.schedule_button:
+
+                    break;
+                case R.id.button18:
                     gotoActivity(GpsActivity.class);
-                   break;
+                    break;
             }
         }
     };

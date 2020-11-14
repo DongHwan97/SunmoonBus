@@ -17,6 +17,7 @@ import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+
 public class GpsActivity extends AppCompatActivity {
 
     TextView tv;
@@ -62,8 +63,6 @@ public class GpsActivity extends AppCompatActivity {
     } // end of onCreate
 
     public void openMapView(){//버스들 위치받아올 배열필요할듯? 차례대로 버스 마커표시해줌
-        double[] latitude = new double[0];
-        double[] longitude = new double[0];
         MapView mapView = new MapView(this);
         ViewGroup mapViewContainer = findViewById(R.id.map_view);
         MapPoint centerMapPoint = MapPoint.mapPointWithGeoCoord( 36.815291,127.113840);//천안시청이 중심
@@ -72,15 +71,18 @@ public class GpsActivity extends AppCompatActivity {
         mapView.zoomOut(true);
         mapView.setZoomLevel(6,true);//6이 전체지도보기에 가장적합하다
         mapViewContainer.addView(mapView);//맵추가
-        for(int i=0;i<latitude.length;i++)
-        {
-            openMarker(latitude[i],longitude[i],mapView);
+
+
+        for (BusInfo businfo : FirebaseDB.busInfo.values()) {
+            openMarker(businfo.latitude, businfo.longitude, businfo.userCount, mapView);
+
         }
+
     }
 
-    public void openMarker(double latitude, double longitude, MapView mapView){
+    public void openMarker(double latitude, double longitude, int userCount, MapView mapView){
         MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("현 위치");
+        marker.setItemName("눌렀을때떠요" + userCount+"/45");
         marker.setTag(1);
         MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(latitude,longitude);
         marker.setMapPoint(mapPoint);
@@ -88,20 +90,24 @@ public class GpsActivity extends AppCompatActivity {
         marker.setCustomImageResourceId(R.drawable.bus_marker);
         marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
         mapView.addPOIItem(marker);
-
     }
 
 
 
 
-    private final LocationListener mLocationListener = new LocationListener() {//기사꺼만있음 기사가 디비로 자기 좌표보냄
+    private final LocationListener mLocationListener = new LocationListener() {//3초마다 갱신해서 이거계속실행되게해얃매
         public void onLocationChanged(Location location) {
             //여기서 위치값이 갱신되면 이벤트가 발생한다.
             //값은 Location 형태로 리턴되며 좌표 출력 방법은 다음과 같다.
+
+            double latitude = location.getLatitude();//위도
             double longitude = location.getLongitude(); //경도
-            double latitude = location.getLatitude();   //위도
+
+           //FirebaseDB.myRef1.child(user.onBus).child("latitude").setValue(latitude);
+          //  FirebaseDB.myRef1.child(user.onBus).child("longitude").setValue(longitude);
+
             openMapView();
-            tv.setText("위도 : " + longitude + "\n경도 : " + latitude);
+
         }
         public void onProviderDisabled(String provider) {
             // Disabled시
