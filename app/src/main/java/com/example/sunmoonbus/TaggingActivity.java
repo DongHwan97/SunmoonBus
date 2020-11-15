@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class TaggingActivity extends AppCompatActivity {
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
@@ -24,20 +27,20 @@ public class TaggingActivity extends AppCompatActivity {
     ValueHandler handler = new ValueHandler();
 
     private TextView tagId1;
-    private TextView desti1;
+
+    FirebaseDB2 userDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
 
+        userDB = new FirebaseDB2("User");
+
         userCnt = (TextView) findViewById(R.id.userCnt);
         userCnt.setTextColor(Color.GRAY);
 
         tagId1 = (TextView) findViewById(R.id.tagId);
-        desti1 = (TextView) findViewById(R.id.desti);
-
-        //Toast.makeText(this, "태그해주세요~", Toast.LENGTH_SHORT).show();
 
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
@@ -49,6 +52,15 @@ public class TaggingActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        //승자중인지?
+        if (!FirebaseDB.user.onBus.equals("none")) {
+            this.onBus = FirebaseDB.user.onBus;
+            userCnt.setTextColor(Color.WHITE);
+            Toast.makeText(this, onBus + "승차중", Toast.LENGTH_SHORT).show();
+            Background thread = new Background();
+            thread.setDaemon(true);
+            thread.start();
+        }
     }
 
     @Override
@@ -77,37 +89,41 @@ public class TaggingActivity extends AppCompatActivity {
             String taggedID = SunmoonUtil.toHexString(tagId);
 
             if (!FirebaseDB.busInfo.containsKey(taggedID)) {//등록되지 않은 버스
-                Toast.makeText(this, "등록되지 않은 태그", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "등록되지 않은 버스", Toast.LENGTH_SHORT).show();
                 return;
             }
             Background thread = new Background();
             thread.setDaemon(true);
             tagId1.setText("tagid : "+ taggedID);
             if (onBus == null) {
-                Toast.makeText(this, taggedID + "승차", Toast.LENGTH_SHORT).show();
                 onBus = taggedID;
                 userCnt.setTextColor(Color.WHITE);
-                desti1.setText("destination : " + FirebaseDB.busInfo.get(onBus).Destination);
-                FirebaseDB.myRef1.child(onBus).child("userCount").setValue(FirebaseDB.busInfo.get(onBus).userCount + 1);
+                //Toast.makeText(this, taggedID + "승차", Toast.LENGTH_SHORT).show();
+                if (FirebaseDB.user.student) {
+                    FirebaseDB.myRef1.child(onBus).child("userCount").setValue(FirebaseDB.busInfo.get(onBus).userCount + 1);
+                }
                 thread.start();
+
+                //탑승기록 - 승차
+                userDB.upBusRecord(FirebaseDB.user, onBus, "ON");
+
             } else {
                 if (onBus.equals(taggedID)) {
                     userCnt.setTextColor(Color.GRAY);
                     userCnt.setText("0/45");
-                    Toast.makeText(this, taggedID + "하차", Toast.LENGTH_SHORT).show();
-                    FirebaseDB.myRef1.child(onBus).child("userCount").setValue(FirebaseDB.busInfo.get(onBus).userCount -1);
+                    //Toast.makeText(this, taggedID + "하차", Toast.LENGTH_SHORT).show();
+                    if (FirebaseDB.user.student) {
+                        FirebaseDB.myRef1.child(onBus).child("userCount").setValue(FirebaseDB.busInfo.get(onBus).userCount - 1);
+                    }
+
+                    //탑승기록 - 하차
+                    userDB.upBusRecord(FirebaseDB.user, onBus, "OFF");
                     onBus = null;
                 } else {
                     Toast.makeText(this, "잘못된 하차", Toast.LENGTH_SHORT).show();
                 }
             }
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //Toast.makeText(this, "태깅 종료", Toast.LENGTH_SHORT).show();
     }
 
     @Override

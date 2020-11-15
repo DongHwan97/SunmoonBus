@@ -36,7 +36,7 @@ public class BusInfo {
             e.printStackTrace();
 
         } finally {
-            System.out.println(this.Destination + " " + this.latitude + " " +  this.longitude + " " + this.userCount);
+            //System.out.println(this.Destination + " " + this.latitude + " " +  this.longitude + " " + this.userCount);
         }
     }
 }

@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,13 +31,13 @@ import java.util.Set;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText idEditText, pwEditText, pwCheckEditText;
+    EditText phoneEditText;
     RadioGroup rGroup;
-    //RadioButton rdoPassenger, rdoDriver;
-    Button signupBtn;
 
     Toast toast;
     FirebaseDB2 userDB;
     User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         idEditText = findViewById(R.id.idEditText);
+        phoneEditText = findViewById(R.id.phoneEditText);
         pwEditText = findViewById(R.id.pwEditText);
         pwCheckEditText = findViewById(R.id.pwEditTextCheck);
         rGroup = findViewById(R.id.rGroup);
@@ -52,8 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         idEditText.setOnFocusChangeListener(onFocusChangePW);
         idEditText.setOnKeyListener(onKeyID);
 
-        findViewById(R.id.loginButton).setOnClickListener(onClickListener);
-
+        findViewById(R.id.signupButton).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnDriver).setOnClickListener(onClickListener);
         findViewById(R.id.rdoBtnPassenger).setOnClickListener(onClickListener);
     }
@@ -62,14 +63,16 @@ public class SignUpActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.loginButton:
+                case R.id.signupButton:
                     signUp();
                     break;
                 case R.id.rdoBtnPassenger:
                     idEditText.setHint("학번");
+                    phoneEditText.setVisibility(View.VISIBLE);
                     break;
                 case R.id.rdoBtnDriver:
                     idEditText.setHint("전화번호 ('-'제외)");
+                    phoneEditText.setVisibility(View.GONE);
                     break;
             }
         }
@@ -97,6 +100,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void signUp(){
         String id = idEditText.getText().toString();
+        String ph = (phoneEditText.getText().toString().length() == 11)
+                ? phoneEditText.getText().toString() : "none";
         String pw = (pwEditText.getText().toString()
                 .equals(pwCheckEditText.getText().toString()))
                 ? pwCheckEditText.getText().toString() : null;
@@ -114,6 +119,12 @@ public class SignUpActivity extends AppCompatActivity {
         if (id.length() < 9 || pw.length() < 5) {
             startToast(((type.equals("St")) ? "학번은 10자" : "전화번호는 11자")
                         +"리, 비밀번호는 6자리이상입니다. (1)");
+            return;
+        }
+
+        //학생일때 핸드폰 번호 조건
+        if (type.equals("St") ? !(ph.substring(0,3).equals("010")) : false) {
+            startToast("정상적인 전화번호가아닙니다. (4)");
             return;
         }
 
@@ -144,9 +155,14 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        userDB.upUserInfo(new User(id, pw), type);
+        //========================회원가입 조건 만족!==========================
+
+        userDB.upUserInfo(new User(id, pw, ph, "none"), type);
 
         startToast("회원가입을 성공했습니다");
+
+        File file = new File(getFilesDir(), "data.sun");
+        file.delete();
 
         try {
             Thread.sleep(500);

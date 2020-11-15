@@ -12,6 +12,7 @@ public class FirebaseDB {
     public static FirebaseDatabase database1 = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef1 = database1.getReference("BusList");
     public static HashMap<String, BusInfo> busInfo = new HashMap<String, BusInfo>();
+    public static User user;
 
     FirebaseDB() {
         this.init();
