@@ -260,6 +260,10 @@ public class LoginActivity extends AppCompatActivity {
             String type = br.readLine().substring(5);
             br.close();
 
+            if (id.equals("2016") || pw.equals("AAAA")) {
+                return null;
+            }
+
             if (type.equals("St")) {
                 return new User(id, pw, "00000000000", "NONE");
             } else if (type.equals("Bd")) {

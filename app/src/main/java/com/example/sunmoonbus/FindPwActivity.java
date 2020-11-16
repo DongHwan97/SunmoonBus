@@ -91,18 +91,19 @@ public class FindPwActivity extends AppCompatActivity {
                 == R.id.rdoBtnPassenger) ? "St" : "Bd";
 
         String id = idEditText.getText().toString();
-        String ph = type.equals("St") ? phoneEditText.getText().toString() : "NONE";
+        String ph = type.equals("St") ? phoneEditText.getText().toString() : "none";
 
         user = userDB.isIdExist(id, type);
 
-        //혹시모름
-        if(user == null || user.phoneNumber == null) {
-            startToast("다시 시도해주세요 (-1)");
+        //회원가입 되지않은 학번
+        if(user == null) {
+            startToast("회원가입 되지 않은 사용자입니다. (-1)");
             return;
         }
 
-        if (type.equals("St") ? user.phoneNumber.equals("NONE") :
-            user.phoneNumber != null) {
+        //회원정보 검증
+        if (type.equals("St") ? user.phoneNumber.equals("none") :
+            !user.phoneNumber.equals("none")) {
             startToast("다시 시도해주세요 (-3)");
             return;
         }
