@@ -1,48 +1,30 @@
 package com.example.sunmoonbus;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText idEditText, pwEditText, pwCheckEditText;
     EditText phoneEditText;
     RadioGroup rGroup;
 
-    Toast toast;
-    FirebaseDB2 userDB;
-    User user;
+    AccountDBConnect userDB;
+    AccountInfo accountInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userDB = new FirebaseDB2("User");
+        userDB = new AccountDBConnect("User");
         setContentView(R.layout.activity_sign_up);
 
         idEditText = findViewById(R.id.idEditText);
@@ -67,12 +49,17 @@ public class SignUpActivity extends AppCompatActivity {
                     signUp();
                     break;
                 case R.id.rdoBtnPassenger:
-                    idEditText.setHint("학번");
-                    phoneEditText.setVisibility(View.VISIBLE);
+                    idEditText.setText(null); idEditText.setHint("학번");
+                    idEditText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(10)});
+                    phoneEditText.setText(null); phoneEditText.setVisibility(View.VISIBLE);
+                    pwEditText.setText(null); pwCheckEditText.setText(null);
                     break;
+
                 case R.id.rdoBtnDriver:
-                    idEditText.setHint("전화번호 ('-'제외)");
-                    phoneEditText.setVisibility(View.GONE);
+                    idEditText.setText(null); idEditText.setHint("전화번호 ('-'제외)");
+                    idEditText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(11)});
+                    phoneEditText.setText(null); phoneEditText.setVisibility(View.GONE);
+                    pwEditText.setText(null); pwCheckEditText.setText(null);
                     break;
             }
         }
@@ -82,7 +69,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            user = userDB.isIdExist(idEditText.getText().toString(),
+            System.out.println(idEditText.getText().toString());
+            accountInfo = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));
         }
@@ -91,9 +79,9 @@ public class SignUpActivity extends AppCompatActivity {
     EditText.OnKeyListener onKeyID = new EditText.OnKeyListener() {
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            user = userDB.isIdExist(idEditText.getText().toString(),
-                    ((rGroup.getCheckedRadioButtonId()
-                            == R.id.rdoBtnPassenger) ? "St" : "Bd"));
+            String type = ((rGroup.getCheckedRadioButtonId()
+                    == R.id.rdoBtnPassenger) ? "St" : "Bd");
+            accountInfo = userDB.isIdExist(idEditText.getText().toString(), type);
             return false;
         }
     };
@@ -111,45 +99,45 @@ public class SignUpActivity extends AppCompatActivity {
 
         //두번의 비밀번호가 다를때
         if(pw == null) {
-            startToast("비밀번호가 다릅니다. (2)");
+            SunmoonUtil.startToast(this, "비밀번호가 다릅니다. (2)");
             return;
         }
 
         //아이디 및 비밀번호 조건
         if (id.length() < 9 || pw.length() < 5) {
-            startToast(((type.equals("St")) ? "학번은 10자" : "전화번호는 11자")
+            SunmoonUtil.startToast(this, ((type.equals("St")) ? "학번은 10자" : "전화번호는 11자")
                         +"리, 비밀번호는 6자리이상입니다. (1)");
             return;
         }
 
         //학생일때 핸드폰 번호 조건
         if (type.equals("St") ? !(ph.substring(0,3).equals("010")) : false) {
-            startToast("정상적인 전화번호가아닙니다. (4)");
+            SunmoonUtil.startToast(this, "정상적인 전화번호가아닙니다. (4)");
             return;
         }
 
         //길이제한 컷
         id = id.substring(0, ((type.equals("St")) ? 10 : 11));
-        user = userDB.isIdExist(id, type);
+        accountInfo = userDB.isIdExist(id, type);
 
         //정상적인 학번, 전화번호인지 확인
         if (!(type.equals("St")
                 ? id.substring(0, 2).equals("20") : id.substring(0, 3).equals("010"))) {
-            startToast("정상적인 "
+            SunmoonUtil.startToast(this, "정상적인 "
                     + ((type.equals("St")) ? "학번이" : "전화번호가")
                     +"아닙니다. (3)");
             return;
         }
 
         //혹시모름
-        if(user == null) {
-            startToast("다시 시도해주세요 (-1)");
+        if(accountInfo == null) {
+            SunmoonUtil.startToast(this, "다시 시도해주세요 (-1)");
             return;
         }
 
         //회원가입 중복방지
-        if (!user.id.equals("NONE")) {
-            startToast("이미 회원가입되어있는 "
+        if (!accountInfo.id.equals("none")) {
+            SunmoonUtil.startToast(this, "이미 회원가입되어있는 "
                     + ((type.equals("St")) ? "학번" : "아이디")
                     + "입니다. (-2)");
             return;
@@ -157,9 +145,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         //========================회원가입 조건 만족!==========================
 
-        userDB.upUserInfo(new User(id, pw, ph, "none"), type);
+        userDB.upUserInfo(new AccountInfo(id, pw, ph, "none"), type);
 
-        startToast("회원가입을 성공했습니다");
+        SunmoonUtil.startToast(this, "회원가입을 성공했습니다");
 
         File file = new File(getFilesDir(), "data.sun");
         file.delete();
@@ -170,20 +158,18 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.putExtra("id", id);
             setResult(RESULT_OK, intent);
-
             finish();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void startToast(String msg){
-        if (toast != null) {
-            toast.cancel();
-        }
-
-        toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
-        toast.show();
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
 }

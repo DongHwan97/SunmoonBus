@@ -9,15 +9,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class TaggingActivity extends AppCompatActivity {
     private NfcAdapter nfcAdapter;
@@ -28,14 +22,14 @@ public class TaggingActivity extends AppCompatActivity {
 
     private TextView tagId1;
 
-    FirebaseDB2 userDB;
+    AccountDBConnect userDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag);
 
-        userDB = new FirebaseDB2("User");
+        userDB = new AccountDBConnect("User");
 
         userCnt = (TextView) findViewById(R.id.userCnt);
         userCnt.setTextColor(Color.GRAY);
@@ -53,10 +47,10 @@ public class TaggingActivity extends AppCompatActivity {
         super.onStart();
 
         //승자중인지?
-        if (!FirebaseDB.user.onBus.equals("none")) {
-            this.onBus = FirebaseDB.user.onBus;
+        if (!ShuttleDBConnect.accountInfo.onBus.equals("none")) {
+            this.onBus = ShuttleDBConnect.accountInfo.onBus;
             userCnt.setTextColor(Color.WHITE);
-            Toast.makeText(this, onBus + "승차중", Toast.LENGTH_SHORT).show();
+            SunmoonUtil.startToast(this, " " + onBus + "승차중");
             Background thread = new Background();
             thread.setDaemon(true);
             thread.start();
@@ -88,8 +82,8 @@ public class TaggingActivity extends AppCompatActivity {
             byte[] tagId = tag.getId();
             String taggedID = SunmoonUtil.toHexString(tagId);
 
-            if (!FirebaseDB.busInfo.containsKey(taggedID)) {//등록되지 않은 버스
-                Toast.makeText(this, "등록되지 않은 버스", Toast.LENGTH_SHORT).show();
+            if (!ShuttleDBConnect.busInfo.containsKey(taggedID)) {//등록되지 않은 버스
+                SunmoonUtil.startToast(this, "등록되지 않은 버스");
                 return;
             }
             Background thread = new Background();
@@ -99,28 +93,28 @@ public class TaggingActivity extends AppCompatActivity {
                 onBus = taggedID;
                 userCnt.setTextColor(Color.WHITE);
                 //Toast.makeText(this, taggedID + "승차", Toast.LENGTH_SHORT).show();
-                if (FirebaseDB.user.student) {
-                    FirebaseDB.myRef1.child(onBus).child("userCount").setValue(FirebaseDB.busInfo.get(onBus).userCount + 1);
+                if (ShuttleDBConnect.accountInfo.student) {
+                    ShuttleDBConnect.myRef1.child(onBus).child("userCount").setValue(ShuttleDBConnect.busInfo.get(onBus).userCount + 1);
                 }
                 thread.start();
 
                 //탑승기록 - 승차
-                userDB.upBusRecord(FirebaseDB.user, onBus, "ON");
+                userDB.upBusRecord(ShuttleDBConnect.accountInfo, onBus, "ON");
 
             } else {
                 if (onBus.equals(taggedID)) {
                     userCnt.setTextColor(Color.GRAY);
                     userCnt.setText("0/45");
                     //Toast.makeText(this, taggedID + "하차", Toast.LENGTH_SHORT).show();
-                    if (FirebaseDB.user.student) {
-                        FirebaseDB.myRef1.child(onBus).child("userCount").setValue(FirebaseDB.busInfo.get(onBus).userCount - 1);
+                    if (ShuttleDBConnect.accountInfo.student) {
+                        ShuttleDBConnect.myRef1.child(onBus).child("userCount").setValue(ShuttleDBConnect.busInfo.get(onBus).userCount - 1);
                     }
 
                     //탑승기록 - 하차
-                    userDB.upBusRecord(FirebaseDB.user, onBus, "OFF");
+                    userDB.upBusRecord(ShuttleDBConnect.accountInfo, onBus, "OFF");
                     onBus = null;
                 } else {
-                    Toast.makeText(this, "잘못된 하차", Toast.LENGTH_SHORT).show();
+                    SunmoonUtil.startToast(this, "잘못된 하차");
                 }
             }
         }
@@ -136,7 +130,7 @@ public class TaggingActivity extends AppCompatActivity {
             while(onBus != null) {
                 Message message = handler.obtainMessage();
                 Bundle bundle = new Bundle();
-                bundle.putInt("value", FirebaseDB.busInfo.get(onBus).userCount);
+                bundle.putInt("value", ShuttleDBConnect.busInfo.get(onBus).userCount);
                 message.setData(bundle);
                 handler.sendMessage(message);
                 try {
@@ -147,7 +141,6 @@ public class TaggingActivity extends AppCompatActivity {
             }
         }
     }
-
     class ValueHandler extends Handler {
         @Override
         public void handleMessage(@NonNull Message msg) {

@@ -1,5 +1,10 @@
 package com.example.sunmoonbus;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.widget.Toast;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -39,5 +44,30 @@ public class SunmoonUtil {
             sb.append(CHARS.charAt((data[i] >> 4) & 0x0F)).append(CHARS.charAt(data[i] & 0x0F));
         }
         return sb.toString();
+    }
+
+    //인터넷 연결 유무
+    public static boolean getNetStatus(Context context) {
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        if(networkInfo != null){
+            int type = networkInfo.getType();
+            if(type == ConnectivityManager.TYPE_MOBILE || type == ConnectivityManager.TYPE_WIFI){
+                return true;
+            }
+        }
+        startToast(context, "인터넷연결을 확인해주세요");
+        return false;  //연결이 되지않은 상태
+    }
+
+    public static Toast toast;
+    public static void startToast(Context context, String msg){
+        if (toast != null) {
+            toast.cancel();
+        }
+
+        toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

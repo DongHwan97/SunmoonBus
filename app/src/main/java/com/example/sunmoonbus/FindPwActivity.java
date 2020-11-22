@@ -1,33 +1,30 @@
 package com.example.sunmoonbus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 public class FindPwActivity extends AppCompatActivity {
     EditText idEditText, phoneEditText, pwEditText, pwCheckEditText;
     RadioGroup rGroup;
     RadioButton rdoPassenger, rdoDriver;
 
-    Toast toast;
-    FirebaseDB2 userDB;
-    User user;
+    AccountDBConnect userDB;
+    AccountInfo accountInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_pw);
 
-        userDB = new FirebaseDB2("User");
+        userDB = new AccountDBConnect("User");
 
         idEditText = findViewById(R.id.idEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
@@ -54,12 +51,15 @@ public class FindPwActivity extends AppCompatActivity {
                     send();
                     break;
                 case R.id.rdoBtnPassenger:
-                    idEditText.setHint("학번");
-                    phoneEditText.setVisibility(View.VISIBLE);
+                    idEditText.setText(null); idEditText.setHint("학번");
+                    idEditText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(10)});
+                    phoneEditText.setText(null); phoneEditText.setVisibility(View.VISIBLE);
                     break;
+
                 case R.id.rdoBtnDriver:
-                    idEditText.setHint("전화번호 ('-'제외)");
-                    phoneEditText.setVisibility(View.GONE);
+                    idEditText.setText(null); idEditText.setHint("전화번호 ('-'제외)");
+                    idEditText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(11)});
+                    phoneEditText.setText(null); phoneEditText.setVisibility(View.GONE);
                     break;
             }
         }
@@ -69,7 +69,7 @@ public class FindPwActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            user = userDB.isIdExist(idEditText.getText().toString(),
+            accountInfo = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));
         }
@@ -79,7 +79,7 @@ public class FindPwActivity extends AppCompatActivity {
 
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            user = userDB.isIdExist(idEditText.getText().toString(),
+            accountInfo = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));
             return false;
@@ -93,28 +93,28 @@ public class FindPwActivity extends AppCompatActivity {
         String id = idEditText.getText().toString();
         String ph = type.equals("St") ? phoneEditText.getText().toString() : "none";
 
-        user = userDB.isIdExist(id, type);
+        accountInfo = userDB.isIdExist(id, type);
 
         //회원가입 되지않은 학번
-        if(user == null) {
-            startToast("회원가입 되지 않은 사용자입니다. (-1)");
+        if(accountInfo == null) {
+            SunmoonUtil.startToast(this, "회원가입 되지 않은 사용자입니다.");
             return;
         }
 
         //회원정보 검증
-        if (type.equals("St") ? user.phoneNumber.equals("none") :
-            !user.phoneNumber.equals("none")) {
-            startToast("다시 시도해주세요 (-3)");
+        if (type.equals("St") ? accountInfo.phoneNumber.equals("none") :
+            !accountInfo.phoneNumber.equals("none")) {
+            SunmoonUtil.startToast(this, "다시 시도해주세요.");
             return;
         }
 
-        if (!user.id.equals(id) || (type.equals("St") ? !user.phoneNumber.equals(ph) : false)) {
-            startToast("입력한 정보를 다시 확인해주세요 (-2)");
+        if (!accountInfo.id.equals(id) || (type.equals("St") ? !accountInfo.phoneNumber.equals(ph) : false)) {
+            SunmoonUtil.startToast(this, "입력한 정보를 다시 확인해주세요.");
             return;
         }
 
         //========================비밀번호 초기화 조건 만족!==========================
-        startToast("사용자 정보가 확인되었습니다.");
+        SunmoonUtil.startToast(this, "사용자 정보가 확인되었습니다.");
         setContentView(R.layout.activity_reset_pw);
 
         pwEditText = findViewById(R.id.pwEditText);
@@ -137,19 +137,19 @@ public class FindPwActivity extends AppCompatActivity {
 
         //비밀번호 비밀번호 확인 같은지?
         if (pw == null) {
-            startToast("입력한 정보를 다시 확인해주세요 (-3)");
+            SunmoonUtil.startToast(this, "입력한 정보를 다시 확인해주세요.");
             return;
         }
 
         //이전에 사용하던 비밀번호로는 사용불가하게
-        if (user.getPW().equals(SunmoonUtil.toSHAString(pw))) {
-            startToast("이전에 사용한던 비밀번호로 설정할 수 없습니다 (-4)");
+        if (accountInfo.getPW().equals(SunmoonUtil.toSHAString(pw))) {
+            SunmoonUtil.startToast(this, "이전에 사용한던 비밀번호로 설정할 수 없습니다.");
             return;
         }
 
-        userDB.upUserInfo(new User(id, pw, ph, user.onBus), type);
+        userDB.upUserInfo(new AccountInfo(id, pw, ph, accountInfo.onBus), type);
 
-        startToast("비밀번호를 변경했습니다");
+        SunmoonUtil.startToast(this, "비밀번호를 변경했습니다.");
 
         try {
             Thread.sleep(500);
@@ -157,20 +157,18 @@ public class FindPwActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.putExtra("id", id);
             setResult(RESULT_OK, intent);
-
             finish();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void startToast(String msg){
-        if (toast != null) {
-            toast.cancel();
-        }
-
-        toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
-        toast.show();
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
 }

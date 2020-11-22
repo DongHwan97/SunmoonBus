@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,19 +29,18 @@ public class LoginActivity extends AppCompatActivity {
     RadioGroup rGroup;
     RadioButton rdoPassenger, rdoDriver;
     Button loginBtn;
-    Toast toast;
 
-    FirebaseDB2 userDB;
-    User user, userAuto;
+    AccountDBConnect userDB;
+    AccountInfo accountInfo, accountInfoAuto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new FirebaseDB();
+        new ShuttleDBConnect();
 
         setContentView(R.layout.activity_login);
 
-        userDB = new FirebaseDB2("User");
+        userDB = new AccountDBConnect("User");
 
         idEditText = findViewById(R.id.idEditText);
         pwEditText = findViewById(R.id.pwEditText);
@@ -66,12 +64,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if ((userAuto = autoLogin("data.sun")) != null) {
+        if ((accountInfoAuto = autoLogin()) != null) {
             layoutenable(false);
 
-            user = userDB.isIdExist(userAuto.id, (userAuto.student ? "St" : "Bd"));
+            accountInfo = userDB.isIdExist(accountInfoAuto.id, (accountInfoAuto.student ? "St" : "Bd"));
 
-            if (userAuto.student == false) {
+            if (accountInfoAuto.student == false) {
                 rdoDriver.setChecked(true);
             }
 
@@ -81,11 +79,21 @@ public class LoginActivity extends AppCompatActivity {
                 findViewById(R.id.loginlayout).setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.foreground_wait));
             }
 
-            startToast("잠시만 기다려주세요");
+            SunmoonUtil.startToast(this, "잠시만 기다려주세요");
 
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    if (!SunmoonUtil.getNetStatus(LoginActivity.this)) {
+                        layoutenable(true);
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            findViewById(R.id.loginlayout).setForeground(null);
+                        } else {
+                            findViewById(R.id.loginlayout).setBackgroundDrawable(null);
+                        }
+                        return;
+                    }
                     login(true);
                 }
             }, 1200);
@@ -100,16 +108,33 @@ public class LoginActivity extends AppCompatActivity {
         System.exit(1);
     }
 
-    //회원가입 완료시 회원가입시 썼던 아이디 가져와서 미리 써두기
+    //다음화면에서 로그인화면으로 돌아왔을때
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+
+            case 0://MainActivity
+                finish();
+                break;
+
+            case 1://SignUpActivity
+                break;
+
+            case 2://FindPwActivity
+                break;
+
+            default:
+                break;
+        }
+
         switch (resultCode) {
             case RESULT_OK:
                 idEditText.setText(data.getStringExtra("id"));
                 pwEditText.setText("");
                 break;
-            case RESULT_CANCELED:
+
+            case 2:
                 finish();
                 break;
 
@@ -121,27 +146,42 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     View.OnClickListener onClickListener=new View.OnClickListener(){
+
         @Override
         public void onClick(View view) {
+
+            if (!SunmoonUtil.getNetStatus(LoginActivity.this)) {
+                layoutenable(true);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    findViewById(R.id.loginlayout).setForeground(null);
+                } else {
+                    findViewById(R.id.loginlayout).setBackgroundDrawable(null);
+                }
+                return;
+            }
+
             switch (view.getId()){
                 case R.id.loginButton:
                     login(false);
                     break;
 
                 case R.id.rdoBtnPassenger:
+                    idEditText.setText(null); pwEditText.setText(null);
                     idEditText.setHint("학번");
                     break;
 
                 case R.id.rdoBtnDriver:
+                    idEditText.setText(null); pwEditText.setText(null);
                     idEditText.setHint("전화번호 ('-'제외)");
                     break;
 
                 case R.id.registButton:
-                    gotoActivity(SignUpActivity.class);
+                    startActivityForResult(new Intent(LoginActivity.this, SignUpActivity.class), 1);
                 break;
 
                 case R.id.passwordButton:
-                    gotoActivity(FindPwActivity.class);
+                    startActivityForResult(new Intent(LoginActivity.this, FindPwActivity.class), 2);
                     break;
 
                 default:
@@ -154,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void onFocusChange(View view, boolean b) {
-            user = userDB.isIdExist(idEditText.getText().toString(),
+            accountInfo = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                             == R.id.rdoBtnPassenger) ? "St" : "Bd"));
         }
@@ -164,7 +204,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            user = userDB.isIdExist(idEditText.getText().toString(),
+            accountInfo = userDB.isIdExist(idEditText.getText().toString(),
                     ((rGroup.getCheckedRadioButtonId()
                     == R.id.rdoBtnPassenger) ? "St" : "Bd"));
             return false;
@@ -172,6 +212,7 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     private void login(Boolean autoLogin) {
+
         String id = idEditText.getText().toString();
         String pw = pwEditText.getText().toString();
 
@@ -180,18 +221,17 @@ public class LoginActivity extends AppCompatActivity {
 
         //아이디 및 비밀번호 조건
         if(id.length() < ((type.equals("St")) ? 9 : 10) || pw.length() < 5) {
-            startToast(((type.equals("St")) ?"학번은 10자" : "전화번호는 11자")
-                        + "리, 비밀번호는 6자리이상입니다. (1)");
+            SunmoonUtil.startToast(this, ((type.equals("St")) ?"학번은 10자" : "전화번호는 11자")
+                        + "리, 비밀번호는 6자리이상입니다.");
             return;
         }
 
         //길이제한 컷
         id = id.substring(0, ((type.equals("St")) ? 10 : 11));
-        user = userDB.isIdExist(id, type);
+        accountInfo = userDB.isIdExist(id, type);
 
-        //혹시모름
-        if(user == null) {
-            startToast("다시 시도해주세요 (-1)");
+        //혹시모름 + 인터넷 상황이 안좋을때
+        if(accountInfo == null) {
             layoutenable(true);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -204,8 +244,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if (autoLogin) {
             //자동로그인 - 누군가 비밀번호 변경
-            if (!userAuto.getPW().equals(user.getPW())) {
-                startToast("회원정보가 변경되었습니다 다시 시도해주세요 (-2)");
+            if (!accountInfoAuto.getPW().equals(accountInfo.getPW())) {
+                SunmoonUtil.startToast(this, "회원정보가 변경되었습니다 다시 시도해주세요.");
                 layoutenable(true);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -218,25 +258,25 @@ public class LoginActivity extends AppCompatActivity {
             }
         } else {
             //일반 로그인 - 계정없거나 ID 또는 PW 오류
-            if(user.id == null || !user.id.equals(id)
-                    || !user.getPW().equals(SunmoonUtil.toSHAString(pw))) {
-                startToast(((type.equals("St")) ? "학번" : "전화번호")
-                        + " 또는 비밀번호를 다시 확인해주세요 (2)");
+            if(accountInfo.id == null || !accountInfo.id.equals(id)
+                    || !accountInfo.getPW().equals(SunmoonUtil.toSHAString(pw))) {
+                SunmoonUtil.startToast(this, ((type.equals("St")) ? "학번" : "전화번호")
+                        + " 또는 비밀번호를 다시 확인해주세요.");
                 return;
             }
         }
 
         //========================로그인 성공!==========================
-        user.student = (type.equals("St")) ? true : false;
-        saveAutoLogin("data.sun", user);
-        FirebaseDB.user = user;
-        startToast("로그인에 성공했습니다");
+        accountInfo.student = (type.equals("St")) ? true : false;
+        saveAutoLogin(accountInfo);
+        ShuttleDBConnect.accountInfo = accountInfo;
+        SunmoonUtil.startToast(this, "로그인에 성공했습니다");
 
-        gotoActivity(MainActivity.class);
+        startActivityForResult(new Intent(this, MainActivity.class), 0);
     }
 
-    private User autoLogin(String filename) {
-        File file = new File(getFilesDir(), filename);
+    private AccountInfo autoLogin() {
+        File file = new File(getFilesDir(), "data.sun");
 
         if (!file.exists()) {
             try {
@@ -265,9 +305,9 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (type.equals("St")) {
-                return new User(id, pw, "00000000000", "NONE");
+                return new AccountInfo(id, pw, "00000000000", "NONE");
             } else if (type.equals("Bd")) {
-                return new User(id, pw);
+                return new AccountInfo(id, pw);
             } else {
                 return null;
             }
@@ -281,8 +321,8 @@ public class LoginActivity extends AppCompatActivity {
         return null;
     }
 
-    private void saveAutoLogin(String filename, User user) {
-        File file = new File(getFilesDir(), filename);
+    private void saveAutoLogin(AccountInfo accountInfo) {
+        File file = new File(getFilesDir(), "data.sun");
 
         if (!file.exists()) {
             try {
@@ -295,9 +335,9 @@ public class LoginActivity extends AppCompatActivity {
         try {
             BufferedWriter br = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
             br.write("#########\n");
-            br.write("id=" + user.id + "\n");
-            br.write("password=" + user.getPW() + "\n");
-            br.write("type=" + ((user.student) ? "St" : "Bd") + "\n");
+            br.write("id=" + accountInfo.id + "\n");
+            br.write("password=" + accountInfo.getPW() + "\n");
+            br.write("type=" + ((accountInfo.student) ? "St" : "Bd") + "\n");
             br.flush(); br.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -311,20 +351,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
     }
 
-    private void startToast(String msg){
-        if (toast != null) {
-            toast.cancel();
-        }
-
-        toast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
     private void layoutenable(Boolean enable) {
         loginBtn.setEnabled(enable);
-        idEditText.setEnabled(enable); idEditText.setText(userAuto.id);
+        idEditText.setEnabled(enable); idEditText.setText(accountInfoAuto.id);
         pwEditText.setEnabled(enable);
         rdoPassenger.setEnabled(enable); rdoDriver.setEnabled(enable);
-        pwEditText.setText( enable ? "" : userAuto.getPW());
+        pwEditText.setText( enable ? "" : accountInfoAuto.getPW());
     }
 }
