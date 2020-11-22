@@ -92,7 +92,6 @@ public class TaggingActivity extends AppCompatActivity {
             if (onBus == null) {
                 onBus = taggedID;
                 userCnt.setTextColor(Color.WHITE);
-                //Toast.makeText(this, taggedID + "승차", Toast.LENGTH_SHORT).show();
                 if (ShuttleDBConnect.accountInfo.student) {
                     ShuttleDBConnect.myRef1.child(onBus).child("userCount").setValue(ShuttleDBConnect.busInfo.get(onBus).userCount + 1);
                 }
@@ -105,7 +104,6 @@ public class TaggingActivity extends AppCompatActivity {
                 if (onBus.equals(taggedID)) {
                     userCnt.setTextColor(Color.GRAY);
                     userCnt.setText("0/45");
-                    //Toast.makeText(this, taggedID + "하차", Toast.LENGTH_SHORT).show();
                     if (ShuttleDBConnect.accountInfo.student) {
                         ShuttleDBConnect.myRef1.child(onBus).child("userCount").setValue(ShuttleDBConnect.busInfo.get(onBus).userCount - 1);
                     }

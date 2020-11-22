@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this,
                             TaggingActivity.class));
                     break;
-                /*
+
                 case R.id.buslist_image:
-                    startActivity(new Intent(MainActivity.this,
-                            BusListActivity.class));
-                    break;*/
+                    /*startActivity(new Intent(MainActivity.this,
+                            BusListActivity.class));*/
+                    break;
 
                 case R.id.schedule_image:
                     startActivity(new Intent(Intent.ACTION_VIEW,

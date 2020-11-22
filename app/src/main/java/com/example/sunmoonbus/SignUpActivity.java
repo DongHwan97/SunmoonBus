@@ -99,20 +99,20 @@ public class SignUpActivity extends AppCompatActivity {
 
         //두번의 비밀번호가 다를때
         if(pw == null) {
-            SunmoonUtil.startToast(this, "비밀번호가 다릅니다. (2)");
+            SunmoonUtil.startToast(this, "비밀번호가 다릅니다.");
             return;
         }
 
         //아이디 및 비밀번호 조건
         if (id.length() < 9 || pw.length() < 5) {
             SunmoonUtil.startToast(this, ((type.equals("St")) ? "학번은 10자" : "전화번호는 11자")
-                        +"리, 비밀번호는 6자리이상입니다. (1)");
+                        +"리, 비밀번호는 6자리이상입니다.");
             return;
         }
 
         //학생일때 핸드폰 번호 조건
         if (type.equals("St") ? !(ph.substring(0,3).equals("010")) : false) {
-            SunmoonUtil.startToast(this, "정상적인 전화번호가아닙니다. (4)");
+            SunmoonUtil.startToast(this, "정상적인 전화번호가아닙니다.");
             return;
         }
 
@@ -125,13 +125,13 @@ public class SignUpActivity extends AppCompatActivity {
                 ? id.substring(0, 2).equals("20") : id.substring(0, 3).equals("010"))) {
             SunmoonUtil.startToast(this, "정상적인 "
                     + ((type.equals("St")) ? "학번이" : "전화번호가")
-                    +"아닙니다. (3)");
+                    +"아닙니다.");
             return;
         }
 
-        //혹시모름
+        //혹시모름 + 인터넷 상황이 안좋을때
         if(accountInfo == null) {
-            SunmoonUtil.startToast(this, "다시 시도해주세요 (-1)");
+            SunmoonUtil.startToast(this, "다시 시도해주세요.");
             return;
         }
 
@@ -139,7 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
         if (!accountInfo.id.equals("none")) {
             SunmoonUtil.startToast(this, "이미 회원가입되어있는 "
                     + ((type.equals("St")) ? "학번" : "아이디")
-                    + "입니다. (-2)");
+                    + "입니다.");
             return;
         }
 
