@@ -10,22 +10,17 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <!--
-        <ImageView
-            android:id="@+id/wait"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            app:srcCompat="@drawable/person" /> -->
         <ImageView
             android:id="@+id/bus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="80dp"
             android:layout_gravity="center_horizontal"
+            android:layout_margin="80dp"
             app:srcCompat="@drawable/bus_2" />
+
         <TextView
             android:id="@+id/userCnt"
             android:layout_width="wrap_content"
@@ -38,27 +33,37 @@
 
     </FrameLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1.25">
+
+        <ImageView
+            android:id="@+id/pressBtn"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/bell" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="하차"
-            android:textColor="#0040FF"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorLink="#67DD80"
-            android:textSize="20sp"
-            android:translationX="187dp"
-            android:translationY="220dp" />
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_below="@+id/pressBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center|top"
+            android:text="하차벨"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/button_6" />
-
-    </FrameLayout>
+    </RelativeLayout>
 
 </LinearLayout>
