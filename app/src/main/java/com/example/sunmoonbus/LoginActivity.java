@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.registButton).setOnClickListener(onClickListener);
         findViewById(R.id.passwordButton).setOnClickListener(onClickListener);
     }
-
     @Override
     public void onBackPressed(){
         super.onBackPressed();

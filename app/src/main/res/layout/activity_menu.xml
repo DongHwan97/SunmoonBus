@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
         <ImageView
             android:id="@+id/top_image"
@@ -19,7 +18,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/menu_top" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/logout_menu"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            app:srcCompat="@drawable/menu_logout" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/bottom_layout"

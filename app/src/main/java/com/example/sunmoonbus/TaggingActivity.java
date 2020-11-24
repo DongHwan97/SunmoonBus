@@ -32,8 +32,8 @@ public class TaggingActivity extends AppCompatActivity {
         userCnt = (TextView) findViewById(R.id.userCnt);
         userCnt.setTextColor(Color.GRAY);
 
-        tagId1 = (TextView) findViewById(R.id.tagId);
-        desti1 = (TextView) findViewById(R.id.desti);
+        //tagId1 = (TextView) findViewById(R.id.tagId);
+        //desti1 = (TextView) findViewById(R.id.desti);
 
         //Toast.makeText(this, "태그해주세요~", Toast.LENGTH_SHORT).show();
 
