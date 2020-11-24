@@ -1,6 +1,7 @@
 package com.example.sunmoonbus;
 
 public class BusInfo {
+    String id;
     int userCount;
     String Destination;
     double latitude;
@@ -11,6 +12,7 @@ public class BusInfo {
     }
 
     public void upDateInfo(String key, Object value) {
+        this.id = key;
         try {
             switch (key) {
                 case "desti":
