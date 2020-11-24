@@ -1,125 +1,68 @@
 package com.example.sunmoonbus;
 
-import android.content.Context;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.daum.mf.map.api.MapPOIItem;
-import net.daum.mf.map.api.MapPoint;
-import net.daum.mf.map.api.MapView;
-
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class GpsActivity extends AppCompatActivity {
+    private Button btnShowLocation, stopBtn;
+    private TextView txtLat;
+    private TextView txtLon;
+    private final int PERMISSIONS_ACCESS_FINE_LOCATION=1000;
+    private final int PERMISSIONS_ACCESS_COARSE_LOCATION=1001;
 
-    TextView tv;
-    ToggleButton tb;
-
+    private boolean isPermission=false;
+    private Gps gps;
+    AccountDBConnect driverDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
+        btnShowLocation=(Button)findViewById(R.id.button);
 
-
-        tv = (TextView) findViewById(R.id.textView2);
-        tv.setText("위치정보 미수신중");
-
-        tb = (ToggleButton)findViewById(R.id.toggle1);
-
-        // LocationManager 객체를 얻어온다
-        final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);// 2. LocationManager 를 통해서 원하는 제공자의 리스너 등록
-
-        tb.setOnClickListener(new View.OnClickListener() {
+        txtLat=(TextView)findViewById(R.id.latitude);
+        txtLon=(TextView)findViewById(R.id.longitude);
+        driverDB = new AccountDBConnect("User");
+        btnShowLocation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                try{
-                    if(tb.isChecked()){
-                        tv.setText("수신중..");
-                        // GPS 제공자의 정보가 바뀌면 콜백하도록 리스너 등록하기~!!!
-                        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, // 등록할 위치제공자
-                                100, // 통지사이의 최소 시간간격 (miliSecond)
-                                1, // 통지사이의 최소 변경거리 (m)
-                                mLocationListener);
-                        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, // 등록할 위치제공자
-                                100, // 통지사이의 최소 시간간격 (miliSecond)
-                                1, // 통지사이의 최소 변경거리 (m)
-                                mLocationListener);
-                    }else{
-                        tv.setText("위치정보 미수신중");
-                        lm.removeUpdates(mLocationListener);  //  미수신할때는 반드시 자원해체를 해주어야 한다.
-                    }
-                }catch(SecurityException ex){
+            public void onClick(View view) {
+                if(!isPermission){
+                    callPermission();
+                    return;
+                }
+                gps= new Gps(GpsActivity.this);
+                if(gps.isGetLocation()){
+                    double latitude = gps.getLat();
+                    double longitude = gps.getLon();
+
+                    txtLat.setText(String.valueOf(latitude));
+                    txtLon.setText(String.valueOf(longitude));
+                    //1. 탄버스의 태그에 2. 경도와 위도를 저장
+                    ShuttleDBConnect.myRef1.child("49EDB800").child("latitude").setValue(gps.getLat());
+                    ShuttleDBConnect.myRef1.child("49EDB800").child("longitude").setValue(gps.getLon());
+//여기에 기사정보를 올림
+                }else{
+                    gps.showSettingAlert();
                 }
             }
         });
-    } // end of onCreate
-
-    public void openMapView(){//버스들 위치받아올 배열필요할듯? 차례대로 버스 마커표시해줌
-        MapView mapView = new MapView(this);
-        ViewGroup mapViewContainer = findViewById(R.id.map_view);
-        MapPoint centerMapPoint = MapPoint.mapPointWithGeoCoord( 36.815291,127.113840);//천안시청이 중심
-        mapView.setMapCenterPoint(centerMapPoint,true);
-        mapView.zoomIn(true);
-        mapView.zoomOut(true);
-        mapView.setZoomLevel(6,true);//6이 전체지도보기에 가장적합하다
-        mapViewContainer.addView(mapView);//맵추가
-
-
-        for (BusInfo businfo : FirebaseDB.busInfo.values()) {
-            openMarker(businfo.latitude, businfo.longitude, businfo.userCount, mapView);
-
-        }
 
     }
 
-    public void openMarker(double latitude, double longitude, int userCount, MapView mapView){
-        MapPOIItem marker = new MapPOIItem();
-        marker.setItemName("눌렀을때떠요" + userCount+"/45");
-        marker.setTag(1);
-        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(latitude,longitude);
-        marker.setMapPoint(mapPoint);
-        marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
-        marker.setCustomImageResourceId(R.drawable.bus_marker);
-        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-        mapView.addPOIItem(marker);
+    private void callPermission(){
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M&&checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION},PERMISSIONS_ACCESS_FINE_LOCATION);
+        }else if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M&&checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},PERMISSIONS_ACCESS_COARSE_LOCATION);
+        }else{
+            isPermission=true;
+        }
     }
 
-
-
-
-    private final LocationListener mLocationListener = new LocationListener() {//3초마다 갱신해서 이거계속실행되게해얃매
-        public void onLocationChanged(Location location) {
-            //여기서 위치값이 갱신되면 이벤트가 발생한다.
-            //값은 Location 형태로 리턴되며 좌표 출력 방법은 다음과 같다.
-
-            double latitude = location.getLatitude();//위도
-            double longitude = location.getLongitude(); //경도
-
-           //FirebaseDB.myRef1.child(user.onBus).child("latitude").setValue(latitude);
-          //  FirebaseDB.myRef1.child(user.onBus).child("longitude").setValue(longitude);
-
-            openMapView();
-
-        }
-        public void onProviderDisabled(String provider) {
-            // Disabled시
-            Log.d("test", "onProviderDisabled, provider:" + provider);
-        }
-        public void onProviderEnabled(String provider) {
-            // Enabled시
-            Log.d("test", "onProviderEnabled, provider:" + provider);
-        }
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            // 변경시
-            Log.d("test", "onStatusChanged, provider:" + provider + ", status:" + status + " ,Bundle:" + extras);
-        }
-    };
-} // end of class
+}

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loginlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradation"
     android:orientation="vertical"
-    android:paddingBottom="40dp">
+    android:paddingBottom="40dp"
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +17,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/Login_icon"
+            android:id="@+id/login_icon"
             android:layout_width="407dp"
             android:layout_height="257dp"
             android:layout_gravity="center"
@@ -35,9 +37,9 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_soft"
                 android:digits="1234567890"
-                android:maxLength="11"
                 android:hint="학번"
                 android:inputType="number"
+                android:maxLength="11"
                 android:padding="30px"
                 android:radius="15dp" />
 
@@ -47,7 +49,6 @@
                 android:layout_height="45dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edittext_soft"
-                android:maxLength="20"
                 android:hint="비밀번호"
                 android:inputType="textPassword"
                 android:padding="30px" />
@@ -77,8 +78,8 @@
                     android:buttonTint="#000000"
                     android:checked="true"
                     android:text="학생"
-                    android:textSize="15sp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/rdoBtnDriver"
@@ -87,8 +88,8 @@
                     android:layout_marginRight="10dp"
                     android:buttonTint="#000000"
                     android:text="기사"
-                    android:textSize="15sp"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp" />
             </RadioGroup>
         </LinearLayout>
 
@@ -104,7 +105,7 @@
         android:paddingRight="10dp">
 
         <ImageView
-            android:id="@+id/Login_line"
+            android:id="@+id/login_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/login_bottomline" />
@@ -132,7 +133,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
                 android:background="#00FFFFFF"
-                android:text="비밀번호 찾기"
+                android:text="비밀번호 재설정"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sunmoonbus">
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
 
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,23 +19,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".GpsActivity" />
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b4a6fab021104552ca5a029ba114d841" />
+        <activity android:name=".GpsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".FindPwActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
 
-        <activity android:name=".FindPwActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TaggingActivity">
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

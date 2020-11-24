@@ -9,6 +9,11 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="30" />
 
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -31,18 +36,37 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity android:name="com.example.sunmoonbus.GpsActivity" />
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b4a6fab021104552ca5a029ba114d841" />
 
-        <activity android:name="com.example.sunmoonbus.FindPwActivity" />
-        <activity android:name="com.example.sunmoonbus.SignUpActivity" />
-        <activity android:name="com.example.sunmoonbus.MainActivity" />
-        <activity android:name="com.example.sunmoonbus.LoginActivity" >
+        <activity
+            android:name="com.example.sunmoonbus.GpsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.sunmoonbus.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.sunmoonbus.FindPwActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.sunmoonbus.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.sunmoonbus.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.example.sunmoonbus.LoginActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.sunmoonbus.TaggingActivity" >
+            <intent-filter>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
