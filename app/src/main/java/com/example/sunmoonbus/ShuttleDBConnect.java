@@ -12,7 +12,7 @@ public class ShuttleDBConnect {
     public static FirebaseDatabase database1 = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef1 = database1.getReference("BusList");
     public static HashMap<String, BusInfo> busInfo = new HashMap<String, BusInfo>();
-    public static AccountInfo accountInfo = new AccountInfo();
+    public static AccountInfo accountInfo;
 
     ShuttleDBConnect() {
         this.init();

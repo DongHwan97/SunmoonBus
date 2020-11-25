@@ -4,8 +4,8 @@ public class AccountInfo {
     public String id;
     private String pw;
 
-    public String onBus;
-    public String phoneNumber;
+    public String onBus = "none";
+    public String phoneNumber = "00000000000";
     public Boolean student;
 
     AccountInfo() {
@@ -22,6 +22,7 @@ public class AccountInfo {
     AccountInfo(String id, String pw) {
         this.id = id;
         this.pw = pw;
+        this.phoneNumber = "none";
         this.student = false;
     }
 

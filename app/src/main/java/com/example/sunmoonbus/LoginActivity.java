@@ -58,11 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
         findViewById(R.id.registButton).setOnClickListener(onClickListener);
         findViewById(R.id.passwordButton).setOnClickListener(onClickListener);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         if ((accountInfoAuto = autoLogin()) != null) {
             layoutenable(false);
@@ -96,8 +91,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     login(true);
                 }
-            }, 1200);
+            }, 1300);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 
     @Override
@@ -115,7 +116,19 @@ public class LoginActivity extends AppCompatActivity {
         switch (requestCode) {
 
             case 0://MainActivity
-                finish();
+                if (resultCode == RESULT_CANCELED) {
+                    finish();
+                    break;
+                }
+                File file = new File(getFilesDir(), "data.sun");
+                file.delete();
+                ShuttleDBConnect.accountInfo = null;
+                layoutenable(true);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    findViewById(R.id.loginlayout).setForeground(null);
+                } else {
+                    findViewById(R.id.loginlayout).setBackgroundDrawable(null);
+                }
                 break;
 
             case 1://SignUpActivity
@@ -132,10 +145,6 @@ public class LoginActivity extends AppCompatActivity {
             case RESULT_OK:
                 idEditText.setText(data.getStringExtra("id"));
                 pwEditText.setText("");
-                break;
-
-            case 2:
-                finish();
                 break;
 
             default:
@@ -233,7 +242,7 @@ public class LoginActivity extends AppCompatActivity {
         //혹시모름 + 인터넷 상황이 안좋을때
         if(accountInfo == null) {
             layoutenable(true);
-
+            SunmoonUtil.startToast(this, "인터넷 연결이 불안정합니다 다시 시도해주세요.");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 findViewById(R.id.loginlayout).setForeground(null);
             } else {
@@ -287,6 +296,8 @@ public class LoginActivity extends AppCompatActivity {
                 br.write("password=AAAA\n");
                 br.write("type=S\n");
                 br.flush(); br.close();
+                return null;
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -300,16 +311,10 @@ public class LoginActivity extends AppCompatActivity {
             String type = br.readLine().substring(5);
             br.close();
 
-            if (id.equals("2016") || pw.equals("AAAA")) {
-                return null;
-            }
-
             if (type.equals("St")) {
-                return new AccountInfo(id, pw, "00000000000", "NONE");
+                return new AccountInfo(id, pw, "00000000000", "none");
             } else if (type.equals("Bd")) {
                 return new AccountInfo(id, pw);
-            } else {
-                return null;
             }
 
         } catch (FileNotFoundException e1) {
@@ -357,5 +362,6 @@ public class LoginActivity extends AppCompatActivity {
         pwEditText.setEnabled(enable);
         rdoPassenger.setEnabled(enable); rdoDriver.setEnabled(enable);
         pwEditText.setText( enable ? "" : accountInfoAuto.getPW());
+
     }
 }

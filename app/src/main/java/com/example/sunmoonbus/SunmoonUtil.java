@@ -61,6 +61,7 @@ public class SunmoonUtil {
         return false;  //연결이 되지않은 상태
     }
 
+    //Toast 메시지
     public static Toast toast;
     public static void startToast(Context context, String msg){
         if (toast != null) {

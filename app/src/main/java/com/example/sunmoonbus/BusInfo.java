@@ -2,9 +2,10 @@ package com.example.sunmoonbus;
 
 public class BusInfo {
     int userCount;
-    String Destination;
+    String destination;
     double latitude;
     double longitude;
+    int alrm;
 
     BusInfo() {
 
@@ -14,7 +15,7 @@ public class BusInfo {
         try {
             switch (key) {
                 case "desti":
-                    this.Destination = (String) value;
+                    this.destination = (String) value;
                     break;
                 case "latitude":
                     this.latitude = (double) value;
@@ -24,6 +25,10 @@ public class BusInfo {
                     break;
                 case "userCount":
                     this.userCount = ((Long) value).intValue();
+                    break;
+                case "alrm":
+                    this.alrm = ((Long) value).intValue();
+
                 default:
                     break;
             }
