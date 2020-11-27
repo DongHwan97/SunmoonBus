@@ -6,6 +6,7 @@ public class BusInfo {
     double latitude;
     double longitude;
     int alrm;
+    boolean moving;
 
     BusInfo() {
 
@@ -28,6 +29,10 @@ public class BusInfo {
                     break;
                 case "alrm":
                     this.alrm = ((Long) value).intValue();
+                    break;
+                case "moving":
+                     this.moving = (boolean) value;
+                     break;
 
                 default:
                     break;
@@ -39,9 +44,6 @@ public class BusInfo {
             e1.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-
-        } finally {
-            //System.out.println(this.Destination + " " + this.latitude + " " +  this.longitude + " " + this.userCount);
         }
     }
 }

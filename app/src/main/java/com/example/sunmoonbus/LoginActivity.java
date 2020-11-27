@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
 
             accountInfo = userDB.isIdExist(accountInfoAuto.id, (accountInfoAuto.student ? "St" : "Bd"));
 
-            if (accountInfoAuto.student == false) {
+            if (!accountInfoAuto.student) {
                 rdoDriver.setChecked(true);
             }
 
@@ -276,7 +276,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         //========================로그인 성공!==========================
-        accountInfo.student = (type.equals("St")) ? true : false;
+        accountInfo.student = type.equals("St");
         saveAutoLogin(accountInfo);
         ShuttleDBConnect.accountInfo = accountInfo;
         SunmoonUtil.startToast(this, "로그인에 성공했습니다");
@@ -349,11 +349,6 @@ public class LoginActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void gotoActivity(Class c){
-        Intent intent = new Intent(this, c);
-        startActivityForResult(intent, 0);
     }
 
     private void layoutenable(Boolean enable) {

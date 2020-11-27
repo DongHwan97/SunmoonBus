@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/alrmLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradation"
     android:gravity="center"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="350dp"
-        android:layout_height="550dp"
+        android:layout_height="570dp"
         android:layout_gravity="center"
         android:background="@drawable/list_back"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/pressedCnt"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="하차할 인원 : "
+            android:textSize="24sp" />
 
         <FrameLayout
             android:layout_width="match_parent"

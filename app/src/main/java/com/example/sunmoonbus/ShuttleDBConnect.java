@@ -1,5 +1,7 @@
 package com.example.sunmoonbus;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -11,14 +13,14 @@ import java.util.HashMap;
 public class ShuttleDBConnect {
     public static FirebaseDatabase database1 = FirebaseDatabase.getInstance();
     public static DatabaseReference myRef1 = database1.getReference("BusList");
-    public static HashMap<String, BusInfo> busInfo = new HashMap<String, BusInfo>();
+    public static HashMap<String, BusInfo> busInfo = new HashMap<>();
     public static AccountInfo accountInfo;
 
     ShuttleDBConnect() {
         this.init();
     }
 
-    public static void init() {
+    public void init() {
 
         myRef1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -61,4 +63,9 @@ public class ShuttleDBConnect {
         });
 
     }
+
+    public static void setDesti(String desti, String targetBusID) {
+        myRef1.child(targetBusID).child("desti").setValue(desti);
+    }
+
 }

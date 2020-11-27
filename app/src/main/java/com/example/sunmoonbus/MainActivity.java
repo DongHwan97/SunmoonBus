@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (!ShuttleDBConnect.accountInfo.student) {
-            ((ImageView) findViewById(R.id.map_image)).setImageResource(R.drawable.menu_schedule);
+            ((ImageView) findViewById(R.id.map_image)).setImageResource(R.drawable.menu_management);
         }
 
         findViewById(R.id.menu_image).setOnClickListener(onClickListener);
@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.map_image:
                     if (!ShuttleDBConnect.accountInfo.student) {//기사
+                        if (ShuttleDBConnect.accountInfo.onBus.equals("none")) {
+                            SunmoonUtil.startToast(MainActivity.this, "운행중인 버스가 없습니다.");
+                            break;
+                        }
                         startActivity(new Intent(MainActivity.this,
                                 ShuttleDriverActivity.class));
                         break;
