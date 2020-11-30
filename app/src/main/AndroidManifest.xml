@@ -24,14 +24,12 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b4a6fab021104552ca5a029ba114d841" />
-
+        <activity android:name=".ShuttleDriverActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".BusActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ListActivity"
             android:screenOrientation="portrait"/>
-        <activity
-            android:name=".GpsActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".MapActivity"
             android:screenOrientation="portrait" />
@@ -53,7 +51,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TaggingActivity">
+        <activity android:name=".TaggingActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,55 +9,113 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-        <!--
-        <ImageView
-            android:id="@+id/wait"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            app:srcCompat="@drawable/person" /> -->
-        <ImageView
+        <Button
             android:id="@+id/bus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="80dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/bus_2" />
+            android:layout_margin="80dp"
+            android:background="@drawable/bus_2" />
+
         <TextView
             android:id="@+id/userCnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:text="0/45"
-            android:textColor="#000000"
+            android:gravity="center"
+            android:lineSpacingExtra="-15dp"
+            android:text="천안터미널\n0/45"
+            android:textColor="#FFFFFF"
             android:textSize="42sp"
             android:textStyle="bold" />
 
     </FrameLayout>
 
-    <FrameLayout
+    <RelativeLayout
+        android:id="@+id/student_menu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1.25"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/pressBtn"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@drawable/bell" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="하차"
-            android:textColor="#0040FF"
-            android:textColorHighlight="#FFFFFF"
-            android:textColorLink="#67DD80"
-            android:textSize="20sp"
-            android:translationX="187dp"
-            android:translationY="220dp" />
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_below="@+id/pressBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="하차벨"
+            android:textColor="#000000"
+            android:textSize="24sp" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/button_6" />
+    </RelativeLayout>
 
-    </FrameLayout>
+    <RelativeLayout
+        android:id="@+id/busdriver_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.25"
+        android:visibility="gone">
 
+
+        <RadioGroup
+            android:id="@+id/radioBtn_G"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center">
+
+            <RadioButton
+                android:id="@+id/radioBtn_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20px"
+                android:text="천안/아산역"
+                android:textSize="30sp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20px"
+                android:text="천안캠퍼스"
+                android:textSize="30sp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20px"
+                android:text="천안터미널"
+                android:textSize="30sp" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20px"
+                android:text="온양역/터미널"
+                android:textSize="30sp" />
+        </RadioGroup>
+    </RelativeLayout>
 </LinearLayout>

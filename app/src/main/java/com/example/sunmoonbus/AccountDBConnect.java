@@ -69,8 +69,14 @@ public class AccountDBConnect {
                 .child("onBus")
                 .setValue(on.equals("ON") ? busID : "none");
 
+        //버스기사면 해당버스 운행중 적용
         if (!accountInfoInfo.student) {
-            ShuttleDBConnect.myRef1.child(busID).child("moving").setValue(on.equals("ON") ? true : false);
+            ShuttleDBConnect.myRef1.child(busID).child("moving").setValue(on.equals("ON"));
+            if (!on.equals("ON")) {
+                ShuttleDBConnect.myRef1.child(busID).child("userCount").setValue(0);
+                ShuttleDBConnect.myRef1.child(busID).child("alrm").setValue(0);
+            }
+
         }
     }
 

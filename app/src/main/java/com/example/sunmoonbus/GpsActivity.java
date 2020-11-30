@@ -1,4 +1,4 @@
-package com.example.sunmoonbus;
+/*package com.example.sunmoonbus;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +15,6 @@ public class GpsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
 
-        txtLat=(TextView)findViewById(R.id.latitude);
-        txtLon=(TextView)findViewById(R.id.longitude);
         driverDB = new AccountDBConnect("User");
         gps= new Gps(GpsActivity.this);
         if(gps.isGetLocation()){
@@ -34,4 +32,4 @@ public class GpsActivity extends AppCompatActivity {
         }
 
     }
-}
+}*/

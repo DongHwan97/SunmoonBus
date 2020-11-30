@@ -90,7 +90,7 @@ public class MapActivity extends AppCompatActivity {
 
     public MapPOIItem openMarker(BusInfo businfo){//마커생성
         MapPOIItem marker = new MapPOIItem();
-        marker.setItemName(businfo.Destination + businfo.userCount+"/45");
+        marker.setItemName(businfo.destination + businfo.userCount+"/45");
         marker.setTag(1);
         marker.setMarkerType(MapPOIItem.MarkerType.CustomImage);
         marker.setCustomImageResourceId(R.drawable.bus_marker);//기본 마커 이미지설정
