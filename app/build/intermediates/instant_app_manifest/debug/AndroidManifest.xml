@@ -36,6 +36,11 @@
         android:testOnly="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
+        <activity
+            android:name="com.example.sunmoonbus.BusActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="com.example.sunmoonbus.ListActivity" />
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b4a6fab021104552ca5a029ba114d841" />

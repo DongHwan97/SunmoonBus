@@ -28,8 +28,16 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_launcher_background.png"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_refresh.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\refresh.png"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bus_1.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\bus_1.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_sunmoonbus.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\sunmoonbus.png"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher_background.png.flat",
@@ -84,6 +92,10 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\layout\\activity_gps.xml"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_roda.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\roda.png"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_menu_top.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\menu_top.png"
     },
@@ -100,6 +112,18 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\layout\\activity_tag.xml"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_go_to_pupple_toolong.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\go_to_pupple_toolong.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\layout_asd.xml.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\layout\\asd.xml"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_go_to_toolong.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\go_to_toolong.png"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_button_6.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\button_6.png"
     },
@@ -110,6 +134,14 @@
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_reset_pw.xml.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\layout\\activity_reset_pw.xml"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_go_to_gray_long.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\go_to_gray_long.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bus_list_waiting.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\bus_list_waiting.png"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
@@ -134,6 +166,10 @@
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_plus_back.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\plus_back.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_bus.xml.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\layout\\activity_bus.xml"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
@@ -172,6 +208,10 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\nfc_card.png"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bus_list_rgb.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\bus_list_rgb.png"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_normal_btn.xml.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\normal_btn.xml"
     },
@@ -188,6 +228,10 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\minus_button.png"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_go_to_long.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\go_to_long.png"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_edittext_soft.xml.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\edittext_soft.xml"
     },
@@ -196,12 +240,20 @@
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bus_list_subback.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\bus_list_subback.png"
+    },
+    {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_list_back.png.flat",
         "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\list_back.png"
+    },
+    {
+        "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable_bus_markerclick.png.flat",
+        "source": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\src\\main\\res\\drawable\\bus_markerclick.png"
     },
     {
         "merged": "C:\\Users\\dhpak\\AndroidStudioProjects\\SunmoonBus\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher_background.png.flat",

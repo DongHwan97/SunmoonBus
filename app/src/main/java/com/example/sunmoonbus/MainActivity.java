@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.buslist_image).setOnClickListener(onClickListener);
         findViewById(R.id.schedule_image).setOnClickListener(onClickListener);
         findViewById(R.id.map_image).setOnClickListener(onClickListener);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener(){
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.buslist_image:
                     /*startActivity(new Intent(MainActivity.this,
                             BusListActivity.class));*/
-                    gotoActivity(GpsActivity.class);
+                    gotoActivity(ListActivity.class);
                     break;
 
                 case R.id.schedule_image:

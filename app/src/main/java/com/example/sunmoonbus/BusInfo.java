@@ -6,7 +6,7 @@ public class BusInfo {
     String Destination;
     double latitude;
     double longitude;
-
+    boolean moving;
     BusInfo() {
 
     }
@@ -26,6 +26,8 @@ public class BusInfo {
                     break;
                 case "userCount":
                     this.userCount = ((Long) value).intValue();
+                case "moving":
+                    this.moving = (boolean) value;
                 default:
                     break;
             }

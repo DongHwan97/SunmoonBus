@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sunmoonbus">
+
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="false" />
@@ -19,22 +20,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="b4a6fab021104552ca5a029ba114d841" />
-        <activity android:name=".GpsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MapActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".FindPwActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignUpActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity"
-            android:screenOrientation="portrait">
 
+        <activity android:name=".BusActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".GpsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FindPwActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,11 +55,10 @@
         </activity>
         <activity android:name=".TaggingActivity">
             <intent-filter>
-                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.nfc.action.TAG_DISCOVERED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
-
 </manifest>
