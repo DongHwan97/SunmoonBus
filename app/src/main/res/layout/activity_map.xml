@@ -4,30 +4,30 @@
     android:layout_height="fill_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true">
 
-        <Button
-            android:id="@+id/refreshButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="287dp"
-            android:layout_marginLeft="287dp"
-            android:layout_marginTop="629dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/refresh" />
-    </RelativeLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="307dp"
+        android:layout_marginLeft="307dp"
+        android:layout_marginTop="629dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/refresh"
+        android:scaleX="1.55" />
 
 </RelativeLayout>
