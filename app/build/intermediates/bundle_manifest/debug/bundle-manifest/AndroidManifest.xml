@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sunmoonbus"
+    package="com.smu.sunmoonbus"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,6 +14,8 @@
 
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
     <!-- <uses-sdk android:minSdkVersion="14"/> -->
@@ -25,30 +27,42 @@
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_sunmoonbus"
         android:label="선문대학교 셔틀버스"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_sunmoonbus_round"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name="com.example.sunmoonbus.FindPWActivity" />
-        <activity android:name="com.example.sunmoonbus.SignUpActivity" />
-        <activity android:name="com.example.sunmoonbus.LoginActivity" />
-        <activity android:name="com.example.sunmoonbus.MainActivity" />
-        <activity android:name="com.example.sunmoonbus.StartActivity" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true" >
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="ddc14a13493b46e59d08d543229f9171" />
+
+        <activity android:name="com.smu.sunmoonbus.MapActivity" />
+        <activity android:name="com.smu.sunmoonbus.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.sunmoonbus.TaggingActivity" >
+        <activity android:name="com.smu.sunmoonbus.ListActivity" />
+        <activity android:name="com.smu.sunmoonbus.FindPwActivity" />
+        <activity android:name="com.smu.sunmoonbus.SignUpActivity" />
+        <activity android:name="com.smu.sunmoonbus.MainActivity" >
+            <intent-filter>
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.smu.sunmoonbus.TaggingActivity" >
             <intent-filter>
                 <action android:name="android.nfc.action.TAG_DISCOVERED" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.smu.sunmoonbus.ShuttleDriverActivity" />
 
         <service
             android:name="com.google.firebase.components.ComponentDiscoveryService"
@@ -67,7 +81,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.example.sunmoonbus.firebaseinitprovider"
+            android:authorities="com.smu.sunmoonbus.firebaseinitprovider"
             android:directBootAware="true"
             android:exported="false"
             android:initOrder="100" />

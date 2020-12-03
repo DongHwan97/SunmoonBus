@@ -37,7 +37,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/edittext_soft"
                 android:digits="1234567890"
-                android:hint="학번"
+                android:hint="학번 또는 교번"
                 android:inputType="number"
                 android:maxLength="11"
                 android:padding="30px"
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="#000000"
                     android:checked="true"
-                    android:text="학생"
+                    android:text="승객"
                     android:textColor="#FFFFFF"
                     android:textSize="15sp" />
 

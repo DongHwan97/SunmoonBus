@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="#000000"
                 android:checked="true"
-                android:text="학생"
+                android:text="승객"
                 android:textSize="15sp" />
 
             <RadioButton
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:digits="1234567890"
-            android:hint="학번"
+            android:hint="학번 또는 교번"
             android:inputType="number"
             android:maxLength="10"
             android:padding="30px" />
