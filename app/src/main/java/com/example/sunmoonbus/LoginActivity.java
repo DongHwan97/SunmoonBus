@@ -69,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                findViewById(R.id.loginlayout).setForeground(ContextCompat.getDrawable(this, R.drawable.edittext_soft));
+                findViewById(R.id.loginlayout).setForeground(ContextCompat.getDrawable(this, R.drawable.foreground_wait));
             } else {
-                findViewById(R.id.loginlayout).setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.edittext_soft));
+                findViewById(R.id.loginlayout).setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.foreground_wait));
             }
 
             SunmoonUtil.startToast(this, "잠시만 기다려주세요");

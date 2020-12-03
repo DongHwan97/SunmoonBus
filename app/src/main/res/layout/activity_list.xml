@@ -1,75 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradation">
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="20dp"
-        android:paddingTop="60dp"
+        android:paddingTop="50dp"
         android:paddingRight="20dp"
         android:paddingBottom="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="5dp">
+            android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/asan"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/asan_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/bus_list_subback" />
-
-                <ImageView
-                    android:id="@+id/asan_road"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_gravity="bottom"
-                    app:srcCompat="@drawable/roda" />
-
-                <ImageView
-                    android:id="@+id/asan_goto"
-                    android:layout_width="120dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/go_to_gray_long" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/asan_light_background"
-                        android:layout_width="50dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/bus_list_rgb" />
-
-                    <TextView
-                        android:id="@+id/light1"
-                        android:layout_width="22dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginRight="24dp"
-                        android:background="#4CAF50" />
-                </FrameLayout>
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,378 +27,101 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/gotoStationBtn"
+                        android:id="@+id/button"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:enabled="false" />
-
+                        android:layout_height="100dp"
+                        android:background="#40000000" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/des_text1"
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="천안/아산역"
-                    android:textColor="#3A3A3A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/asan_total_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="70dp"
-                    android:text="/ 45"
-                    android:textColor="#3A3A3A"
+                    android:layout_marginLeft="50dp"
+                    android:text="아산행 버스"
+                    android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/asan_count"
+                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
-                    android:layout_marginRight="135dp"
-                    android:text="0"
-                    android:textColor="#3A3A3A"
+                    android:layout_marginRight="25dp"
+                    android:text="/ 30"
+                    android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/asan_waiting"
+                <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/bus_list_waiting" />
+                    android:layout_gravity="center|right"
+                    android:layout_marginRight="90dp"
+                    android:text="30"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:background="#E91E63" />
 
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/cheonan_cam"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp">
+                android:layout_height="100dp">
 
-                <ImageView
-                    android:id="@+id/cheonan_cam_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/bus_list_subback" />
-
-                <ImageView
-                    android:id="@+id/cheonan_cam_road"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_gravity="bottom"
-                    app:srcCompat="@drawable/roda" />
-
-                <ImageView
-                    android:id="@+id/cheonan_cam_goto"
-                    android:layout_width="120dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/go_to_toolong" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/cheonan_cam_light_background"
-                        android:layout_width="50dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/bus_list_rgb" />
-
-                    <TextView
-                        android:id="@+id/light2"
-                        android:layout_width="22dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginRight="24dp"
-                        android:background="#FFC107" />
-                </FrameLayout>
-
-                <LinearLayout
+                <Button
+                    android:id="@+id/button1"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/gotoCampusBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:enabled="false" />
-
-                </LinearLayout>
+                    android:background="#4BFFFFFF" />
 
                 <TextView
-                    android:id="@+id/des_text2"
+                    android:id="@+id/bus_name1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="천안캠퍼스"
-                    android:textColor="#3A3A3A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/cheonan_cam_total_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="70dp"
-                    android:text="/ 45"
-                    android:textColor="#3A3A3A"
+                    android:layout_marginLeft="50dp"
+                    android:text="천안행 버스"
+                    android:textColor="#000000"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/cheonan_cam_count"
+                    android:id="@+id/bus_count1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
-                    android:layout_marginRight="135dp"
-                    android:text="0"
-                    android:textColor="#3A3A3A"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/cheonan_cam_waiting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/bus_list_waiting" />
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/cheonan_terminal"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/cheon_terminal_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/bus_list_subback" />
-
-                <ImageView
-                    android:id="@+id/cheon_terminal_road"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_gravity="bottom"
-                    app:srcCompat="@drawable/roda" />
-
-                <ImageView
-                    android:id="@+id/cheon_terminal_goto"
-                    android:layout_width="120dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/go_to_long" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/cheon_terminal_light_background"
-                        android:layout_width="50dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/bus_list_rgb" />
-
-                    <TextView
-                        android:id="@+id/light3"
-                        android:layout_width="22dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginRight="24dp"
-                        android:background="#F44336" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/gotoTerminalBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:enabled="false" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/des_text3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="천안터미널"
-                    android:textColor="#3A3A3A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/cheon_terminal_total_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="70dp"
-                    android:text="/ 45"
-                    android:textColor="#3A3A3A"
+                    android:layout_marginRight="90dp"
+                    android:text="10"
+                    android:textColor="#000000"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/cheon_terminal_count"
+                    android:id="@+id/bus_people1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|right"
-                    android:layout_marginRight="135dp"
-                    android:text="0"
-                    android:textColor="#3A3A3A"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/cheon_terminal_waiting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/bus_list_waiting" />
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/onyang_terminal"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:id="@+id/on_terminal_background"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/bus_list_subback" />
-
-                <ImageView
-                    android:id="@+id/on_terminal_road"
-                    android:layout_width="wrap_content"
-                    android:layout_height="28dp"
-                    android:layout_gravity="bottom"
-                    app:srcCompat="@drawable/roda" />
-
-                <ImageView
-                    android:id="@+id/on_terminal_goto"
-                    android:layout_width="145dp"
-                    android:layout_height="80dp"
-                    android:layout_marginLeft="7dp"
-                    android:layout_marginTop="10dp"
-                    app:srcCompat="@drawable/go_to_pupple_toolong" />
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right">
-
-                    <ImageView
-                        android:id="@+id/on_terminal_light_background"
-                        android:layout_width="50dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        app:srcCompat="@drawable/bus_list_rgb" />
-
-                    <TextView
-                        android:id="@+id/light4"
-                        android:layout_width="22dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="14dp"
-                        android:layout_marginRight="24dp"
-                        android:background="#F44336" />
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/gotoOnyangBtn"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#00000000"
-                        android:enabled="false" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/des_text4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="18dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="온양역/터미널"
-                    android:textColor="#3A3A3A"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/on_terminal_total_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="70dp"
-                    android:text="/ 45"
-                    android:textColor="#3A3A3A"
+                    android:layout_marginRight="25dp"
+                    android:text="/ 30"
+                    android:textColor="#000000"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/on_terminal_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|right"
-                    android:layout_marginRight="135dp"
-                    android:text="0"
-                    android:textColor="#3A3A3A"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/on_terminal_waiting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/bus_list_waiting" />
+                    android:id="@+id/bus_state1"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:background="#71F877" />
 
             </FrameLayout>
 

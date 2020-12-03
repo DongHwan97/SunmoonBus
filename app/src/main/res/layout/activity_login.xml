@@ -133,7 +133,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="15dp"
                 android:background="#00FFFFFF"
-                android:text="비밀번호 재설정"
+                android:text="비밀번호 찾기"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />

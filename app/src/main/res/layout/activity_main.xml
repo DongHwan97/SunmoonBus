@@ -24,7 +24,7 @@
             android:layout_height="30dp"
             android:layout_gravity="right"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/logout_menu" />
+            app:srcCompat="@drawable/menu_logout" />
 
     </FrameLayout>
 

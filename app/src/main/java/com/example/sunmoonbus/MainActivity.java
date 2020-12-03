@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.buslist_image:
-                    startActivity(new Intent(MainActivity.this,
-                            ListActivity.class));
+                    /*startActivity(new Intent(MainActivity.this,
+                            BusListActivity.class));*/
                     break;
 
                 case R.id.schedule_image:
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     //학생
                     startActivity(new Intent(MainActivity.this,
-                            MapActivity.class));
+                            TaggingActivity.class));
                     break;
 
                 default:

@@ -2,16 +2,22 @@ package com.example.sunmoonbus;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.Image;
+import android.nfc.NdefMessage;
+import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-
+import android.view.WindowManager;
 import android.widget.Button;
-
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,7 +25,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
+import java.nio.charset.Charset;
+import java.util.Locale;
 
 public class TaggingActivity extends AppCompatActivity {
     private NfcAdapter nfcAdapter;
@@ -28,8 +35,7 @@ public class TaggingActivity extends AppCompatActivity {
     private Button bell;
     private Button bus;
     private boolean once = false;
-    private Gps gps;
-    AccountDBConnect driverDB;
+
     String onBus;
     ValueHandler handler = new ValueHandler();
     AccountDBConnect userDB;
@@ -125,18 +131,6 @@ public class TaggingActivity extends AppCompatActivity {
                 SunmoonUtil.startToast(this, "승차 했습니다.");
             } else {
                 SunmoonUtil.startToast(this, "안전운전 부탁드립니다.");
-                driverDB = new AccountDBConnect("User");
-                gps= new Gps(TaggingActivity.this);
-                if(gps.isGetLocation()){
-                    double latitude = gps.getLat();
-                    double longitude = gps.getLon();
-                    //1. 탄버스의 태그에 2. 경도와 위도를 저장
-                    ShuttleDBConnect.myRef1.child(onBus).child("latitude").setValue(gps.getLat());
-                    ShuttleDBConnect.myRef1.child(onBus).child("longitude").setValue(gps.getLon());
-//여기에 기사정보를 올림
-                }else{
-                    gps.showSettingAlert();
-                }
             }
 
             this.initView();//태그다음 화면 구성
